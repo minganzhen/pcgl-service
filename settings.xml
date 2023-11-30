@@ -1,0 +1,60 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<!--<localRepository>[本地maven库目录]</localRepository>-->
+	<!-- omitted xml -->
+	<!-- 请妥善保管好您的配置，不要随意分享给他人 -->
+	<servers>
+		<server>
+			<id>codingcorp-swrd_repo-mvn_public</id>
+      		<username>coding-user</username>
+      		<password>coding-pwd</password>
+		</server>
+	</servers>
+
+	<!-- omitted xml -->
+	<profiles>
+		<profile>
+			<id>Repository Proxy</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<repositories>
+				<repository>
+					<!--必须与 settings.xml 的 id 一致-->
+					<id>codingcorp-swrd_repo-mvn_public</id>
+                  <name>mvn_public</name>
+                  <url>http://codingcorp-maven.pkg.codingstd.xc01.cloud.sat.tax/repository/swrd_repo/mvn_public/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>codingcorp-swrd_repo-mvn_public</id>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<url>http://codingcorp-maven.pkg.codingstd.xc01.cloud.sat.tax/repository/swrd_repo/mvn_public/</url>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
+	
+	<mirrors>
+		<mirror>
+			<id>codingcorp-swrd_repo-mvn_public</id>
+			<!-- 此配置避免了本仓库制品的拉取流量被切换到腾讯云镜像源，保证您在使用镜像加速的同时可以从本仓库拉取制品 -->
+			<mirrorOf>central</mirrorOf>
+			<name>mvn_public</name>
+            <url>http://codingcorp-maven.pkg.codingstd.xc01.cloud.sat.tax/repository/swrd_repo/mvn_public/</url>
+		</mirror>
+	</mirrors>
+</settings>

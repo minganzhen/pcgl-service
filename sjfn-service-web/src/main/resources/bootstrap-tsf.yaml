@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: swdsm-service
+management:
+  endpoint:
+    health:
+      enabled: false
+    info:
+      enabled: false

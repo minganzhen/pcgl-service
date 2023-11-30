@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxZtMapper">
+
+    <!-- 表字段 -->
+    <sql id="Base_Column_List">
+        sj_dm, yxbz, zt_dm, zt_jc, ztmc
+    </sql>
+
+    <select id="getZdycxZts" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxZtTree">
+        select a.*
+        from (select t.sj_dm as p_dm,
+                     t.zt_dm as value,
+             t.ztmc  as label,
+             null    as bmst
+              from zdycx_zt t
+              where t.yxbz = 'Y'
+              union all
+              select bd.zt_dm as p_dm,
+                  bd.bd_dm as value,
+                  bd.bdmc  as label,
+                  bd.bmst
+              from zdycx_bd bd
+              where bd.yxbz = 'Y') a
+        order by a.p_dm asc
+    </select>
+</mapper>

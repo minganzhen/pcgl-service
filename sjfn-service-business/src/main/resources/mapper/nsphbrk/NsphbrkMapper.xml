@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.chinatax.gt4.swrdsm.mapper.nsphbrk.NsphbrkMapper">
+
+
+    <select id="selectNsphbrk" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.nsphbrk.NsphbrkDto">
+        select a.PMXH  as pm,
+               a.NSRSBH,
+               a.NSRMC,
+               a.HY_DM,
+               hy.HY_MC,
+               a.DJZCLX_DM,
+               djzclx.DJZCLX_MC,
+               a.SFHJSR_BQ_DNLJ  as hjjrk_je,
+               a.TJRQ as tjsj
+        FROM swrd_kp.DM0_SZCHJQ_JRK_JGPM_QYZB_QC A
+                 left join kjhsgl.di_hy hy on a.HY_DM = hy.HY_DM
+                 left join kjhsgl.di_djzclx djzclx on a.DJZCLX_DM = djzclx.DJZCLX_DM
+        WHERE
+            A.RKND = #{form.cxrqYear}
+          AND A.RKNY = #{form.cxrqYearMonth}
+          AND A.SWJG_DM = #{form.qxSwjgDm}
+        AND A.PMLX_DM = 'SFHJSR_BQ_DNLJ'
+        AND A.PMLB_DM = 'A01'
+        ORDER BY
+        A.PMXH
+        Limit #{form.pmsl}
+    </select>
+
+    <select id="selectZsxmList" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.nsphbrk.ZsxmDto">
+        SELECT b.ZSXM_DM,
+               zsxm.zsxm_mc,
+               b.JRK_BQ_DNLJ + b.TK_BQ_DNLJ as LJRK_JE,
+               b.TK_BQ_DNLJ as LJTK_JE,
+               b.JRK_BQ_DNLJ as LJJRK_JE
+        FROM swrd_kp.DM0_SZCHJQ_JRK_JGPM_QYMX_QC B
+        left join kjhsgl.di_zsxm zsxm on b.ZSXM_DM = zsxm.ZSXM_DM
+        WHERE B.TJRQ = #{dto.tjsj}
+          AND B.PMXH = #{dto.pm}
+          AND B.NSRSBH = #{dto.nsrsbh}
+          AND B.RKND = #{form.cxrqYear}
+          AND B.RKNY = #{form.cxrqYearMonth}
+          AND B.SWJG_DM = #{form.qxSwjgDm}
+          AND B.PMLX_DM = 'SFHJSR_BQ_DNLJ'
+          AND B.PMLB_DM = 'A01'
+        ORDER BY B.ZSXM_DM
+    </select>
+
+</mapper>

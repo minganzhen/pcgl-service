@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxLmgxbMapper">
+
+    <!-- 表字段 -->
+    <sql id="Base_Column_List">
+        bd_dm, id, jglbz, lm_dm, lm_key, lm_label, lmdqfs, lmkd, lmmc, lmpx, qz_dm, tjfxfzbz, tjfxkxzbz, tjlbz, tjlx
+    </sql>
+
+    <select id="getZdycxLmgxbs" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxLmgxbDto">
+        select
+        t.bd_dm,
+        t.id,
+        t.jglbz,
+        t.lm_dm,
+        t.lm_key,
+        t.lm_label,
+        t.lmdqfs,
+        t.lmkd,
+        t.lmmc,
+        t.lmpx,
+        t.qz_dm,
+        t.tjfxfzbz,
+        t.tjfxkxzbz,
+        t.tjlbz,
+        t.tjlx
+        from
+        zdycx_lmgxb t
+        <where>
+            <if test="form.bdDms != null and form.bdDms.size() > 0">
+                and t.bd_dm in
+                <foreach collection="form.bdDms" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="form.jglbz != null and form.jglbz != ''">
+                and t.jglbz = #{form.jglbz}
+            </if>
+            <if test="form.tjfxfzbz != null and form.tjfxfzbz != ''">
+                and t.tjfxfzbz = #{form.tjfxfzbz}
+            </if>
+            <if test="form.tjfxkxzbz != null and form.tjfxkxzbz != ''">
+                and t.tjfxkxzbz = #{form.tjfxkxzbz}
+            </if>
+            <if test="form.tjlbzs != null and form.tjlbzs.size() > 0">
+                and t.tjlbz in
+                <foreach collection="form.tjlbzs" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach>
+            </if>
+            and yxbz = 'Y'
+        </where>
+        order by t.bd_dm ,t.lmpx
+    </select>
+
+    <select id="selectLm" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxZslDto">
+        select
+        t.id,
+        t.bd_dm,
+        t.jglbz,
+        t.tjfxfzbz,
+        t.tjfxkxzbz,
+        t.lm_key,
+        t.lm_dm,
+        t.lm_label,
+        t.lmdqfs,
+        t.lmmc,
+        t.lmkd,
+        t.lmpx
+        from
+        zdycx_lmgxb t
+        <where>
+            <if test="form.bdDms != null and form.bdDms.size() > 0">
+                and t.bd_dm in
+                <foreach collection="form.bdDms" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="form.jglbz != null and form.jglbz != ''">
+                and t.jglbz = #{form.jglbz}
+            </if>
+            <if test="form.tjfxfzbz != null and form.tjfxfzbz != ''">
+                and t.tjfxfzbz = #{form.tjfxfzbz}
+            </if>
+            <if test="form.tjfxkxzbz != null and form.tjfxkxzbz != ''">
+                and t.tjfxkxzbz = #{form.tjfxkxzbz}
+            </if>
+            and yxbz = 'Y'
+        </where>
+        order by t.bd_dm ,t.lmpx
+    </select>
+
+    <select id="selectTj" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxTjXsDto">
+        select
+            distinct
+            t.bd_dm,
+            t.lm_dm,
+            t.lm_label,
+            t.qz_dm,
+            t.tjlbz,
+            t.tjlx
+        from
+            zdycx_lmgxb t
+        <where>
+            <if test="form.bdDms != null and form.bdDms.size() >0">
+                and t.bd_dm in
+                <foreach collection="form.bdDms" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach>
+            </if>
+            and t.tjlbz in ('0','1','2')
+            and t.yxbz = 'Y'
+        </where>
+        order by bd_dm ,tjlbz
+    </select>
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.chinatax.gt4.swrdsm.mapper.fxdkp.FxdkpMapper">
+
+    <select id="selectFxdkp" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.fxdkp.FxdkpDto">
+        select
+            shk.HCLC_KP_UUID,
+            shk.JSYF,
+            shk.HCDW,
+            swjg.swjg_mc as HSDWMC,
+            shk.YDZS,
+            shk.YHCYDS,
+            shk.WHCYDS,
+            shk.YXBZ
+        from swrd_kp.swrd_hclc_kp shk
+        left join kjhsgl.di_swjg swjg on shk.HCDW = swjg.swjg_dm
+        where JSYF = #{form.jsyf}
+        and HCDW = #{form.swjgDm}
+    </select>
+
+
+
+
+</mapper>

@@ -1,0 +1,216 @@
+server:
+  port: 18080
+  
+#spring:
+#  datasource:
+#    dynamic:
+#      primary: dzfp_dzfpgl
+#      datasource:
+#        #电子发票管理库
+#        dzfp_dzfpgl:
+#          type: com.zaxxer.hikari.HikariDataSource
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          username: user
+#          password:
+#          url: jdbc:mysql://IP:3306/sjkf_dzfp_dzfpgl?characterEncoding=utf8&serverTimezone=GMT%2b8
+#          hikari:
+#            maxPoolSize: 15
+#            minIdle: 5
+#            connectionTestQuery: select 1
+#        #电子发票开票库
+#        dzfp_dzfpkp:
+#          type: com.zaxxer.hikari.HikariDataSource
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          username: user
+#          password:
+#          url: jdbc:mysql://IP:3306/sjkf_dzfp_dzfpkp?characterEncoding=utf8&serverTimezone=GMT%2b8
+#          hikari:
+#            maxPoolSize: 15
+#            minIdle: 5
+#            connectionTestQuery: select 1
+#        #电子发票纳税人基础信息
+#        dzfp_nsrjcxx:
+#          type: com.zaxxer.hikari.HikariDataSource
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          username: user
+#          password:
+#          url: jdbc:mysql://IP:3306/sjkf_dzfp_nsrjcxx?characterEncoding=utf8&serverTimezone=GMT%2b8
+#          hikari:
+#            maxPoolSize: 15
+#            minIdle: 5
+#            connectionTestQuery: select 1
+#        #电子发票查询库
+#        dzfp_cx:
+#          type: com.zaxxer.hikari.HikariDataSource
+#          driver-class-name: org.postgresql.Driver
+#          url: jdbc:postgresql://IP:5432/sjkf_dzfp_cx
+#          username: user
+#          password:
+#          hikari:
+#            maxPoolSize: 15
+#            minIdle: 5
+#            connectionTestQuery: select 1
+#        #缓存库，查询参数表和代码表---需要有修改权限的账号
+#        gt4_cache:
+#          type: com.zaxxer.hikari.HikariDataSource
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          username: user
+#          password:
+#          url: jdbc:mysql://IP:3306/sjkf_gt4_cache?characterEncoding=utf8&serverTimezone=GMT%2b8
+#          hikari:
+#            maxPoolSize: 15
+#            minIdle: 5
+#            connectionTestQuery: select 1
+#        #电子发票数据迁移用票加工,仅总局配置
+#        dzfp_sjqy_ypjg:
+#          type: com.zaxxer.hikari.HikariDataSource
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          username:
+#          password:
+#          url: jdbc:mysql://ip:port/dzfp_sjqy_ypjg?characterEncoding=utf8&serverTimezone=GMT%2b8
+#          hikari:
+#            maxPoolSize: 15
+#            minIdle: 5
+#            connectionTestQuery: select 1
+
+#css:
+#  redis:
+#    #内网redis
+#    session-redis:
+#      url: "IP:6379"
+#      password: "PWD"
+#  gt4common:
+#    hbase:
+#      #内网存储系统名称
+#      - name: TxHbaseNw
+#        type: HbaseFileSystem
+#        ak:
+#        sk:
+#        zk: zkip
+#        bucketName: gt4commontest:zlwjccxx #桶名称：表名
+#        userName:
+#        extend:
+#          type: nw
+#    http:
+#      isNw: true
+#      mbxx:
+#        gt4-ggzhyw-app: http://ggzhyw.jczj.tax.cn #公共中心综合业务
+#        gt4-ggzlgl-app: http://ggzlgl.jczj.tax.cn #公共中心资料管理
+#        gt4-ggjczc-app: http://ggjczc.jcsj.tax.cn #公共基础支撑应用地址
+#  datasources:
+#    #缓存库
+#    cacheds:
+#      type: com.zaxxer.hikari.HikariDataSource
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      username: name
+#      password:
+#      url: jdbc:mysql://IP:3306/sjkf_gt4_cache?characterEncoding=utf8&serverTimezone=GMT%2b8
+#      hikari:
+#        maximum-pool-size: 15
+#        minimum-idle: 1
+#        connection-test-query: select 1
+#  workflow:
+#    client:
+#      call: rest
+#    server:
+#      application:
+#        url: http://workflow.jcsj.tax.cn # 工作流服务端访问域名端口。
+#        name: workflow # 工作流服务端部署组名称。
+#  store-system: # 对象存储组件
+#    TxCosNw: # 名称，唯一
+#      cos: # 表示腾讯cos
+#        region: "" # 区域
+#        bucket: "" # 桶名称，云平台创建
+#        ak: ""
+#        sk: ""
+#        client-config:
+#          http-protocol: http # 协议
+#          end-point-suffix: # 存储域名
+#        customParameters:
+#          isdefault: 1 # 默认存储组件
+
+# 总局配置topic_dppt_rz_gl_zj 省局配置topic_dppt_rz_gl_sj
+#log.operation:
+##  日志信息的kafka专用配置
+#  kafka:
+#    topic:
+#      name: topic_dppt_rz_gl_zj
+#  bootstrap-servers: IP:9092
+
+
+#总局配置"zj" 省局配置"sj"
+#dzfp:
+#  env:
+#    zsbz: "zj"
+
+#  是否单列市参考 cs_dzfp_fphmxzqy 表
+#swjggl-config:
+#  swjgDm: "14400000000"
+  
+#新增 数据产生地区,值为部署省的省级税务机关代码，值要用单引号
+#common:
+#  sjcsdq: '14400000000'
+
+##云服务集成平台客户端SDK配置，示例电票DMZ应用配置
+#yfwjcpt-sdk:
+#  enabled: true
+#  # 内网里约网关地址
+#  url: "http://ywkfcs.jcsj.tax.cn"
+#  # 内网app名称，在云服务集成平台注册的唯一标识
+#  app: dzfpfwpt
+#  # 内网app应用接入网关令牌，云服务集成平台注册唯一标识的token
+#  token: 12345678
+#  # 该app应用税务机关代码，值必须用双引号
+#  swjgdm: "14400000000"
+#  # 外网配置为false，内网配置为true
+#  nw: true
+#  feign:
+#    # ywkfcs.jcsj.tax.cn为内网里约网关地址，ebus后如有内容目标省份税务机关代码不变，appid为被调用省份应用app的唯一标识
+#    url-sj: "http://ywkfcs.jcsj.tax.cn/ebus"
+#    url-zj: "http://ywkfcs.jcsj.tax.cn/ebus/00000000000_NW/00000000000_nw_dzfpfwpt"
+#    # ebus后面总局、广东、上海、山东、青海配置总局税务机关代码调用总局接口，其它省市配置本省市税务机关代码调用省局接口
+#    url-sjzcpt: "http://ywkfcs.cssj.tax.cn/ebus/00000000000_NW/00000000000_nw_sjzc-fwzx"
+#    # 增值税发票管理系统
+#    url-zj-gxk: "http://ywkfcs.jcsj.tax.cn/ebus/00000000000_nw_sk-dppt-zj"
+
+
+#仅总局配置
+#cpyycfpyjc:
+#  #内网kafka
+#  kafka:
+#    bootstrap-servers: ip:port
+#    topic:
+#      name: topic_dppt_fslq_ycxg
+
+#试点纳税人清单维护，是否校验成品油企业(Y：校验，N:不校验)，默认为Y；
+#sdnsrqdwh:
+#  jycpyqy: "Y"
+
+#ksqy:
+#  kafka:
+#    loadlistenerclass: true #true启动监听，false不启动监听（总局配置true，省局配置false）
+#    zsdz:
+#    bootstarp-servers: ip:port   #内网Kafka，环境kafka IP:端口    topic_dppt_ksqy_nsrxx所在的服务器ip，以实际环境为准
+#    topic: topic_dppt_ksqy_nsrxx
+#    groupId: swjgglGroup_ksqy
+#    #线程池
+#    threadPool:
+#      #核心线程数-低档
+#      corePoolSizeLow: 10
+#      #最大线程数-低档
+#      maximumPoolSizeLow: 10
+#      #核心线程数-高档
+#      corePoolSizeHigh: 15
+#      #最大线程数-高档
+#      maximumPoolSizeHigh: 15
+
+# 调用工作流单点登录校验配置，预生产/生产环境以实际配置为准。集成/Alpha环境配置为空。
+#sso:
+#  ticketName:
+
+#jdcycfp:
+#  kafka:
+#    #省局配置key，不配置值  总局配置值和key
+#    bootstrap-servers: ip:port
+#    #总局配置true，省局配置false
+#    loadlistenerclass: true

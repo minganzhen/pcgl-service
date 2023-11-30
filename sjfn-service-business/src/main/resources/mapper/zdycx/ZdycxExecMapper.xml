@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxExecMapper">
+
+
+    <select id="selectMxcx" parameterType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxMxcxDto"
+            resultType="java.util.Map">
+        select
+        ${form.selectSql}
+        from
+        ${form.tableSql}
+        <where>
+            ${form.whereSql}
+        </where>
+        <if test="form.orderBySql != null and form.orderBySql != '' ">
+            order by
+            ${form.orderBySql}
+        </if>
+    </select>
+
+    <sql id="mxSql">
+        select
+        ${form.selectSql}
+        from
+        ${form.tableSql}
+        <where>
+            ${form.whereSql}
+        </where>
+        <if test="form.tjfxGroupBySql != null and form.tjfxGroupBySql != '' ">
+            group by
+            ${form.tjfxGroupBySql}
+        </if>
+        <if test="form.orderBySql != null and form.orderBySql != '' ">
+            order by
+            ${form.orderBySql}
+        </if>
+    </sql>
+
+    <select id="selectTjfx" parameterType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxTjfxDto"
+            resultType="java.util.Map">
+        select
+        ${form.tjfxSelectSql}
+        from (
+        <include refid="mxSql"/>
+        ) A
+    </select>
+</mapper>

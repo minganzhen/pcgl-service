@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxBdglgxMapper">
+
+    <!-- 表字段 -->
+    <sql id="Base_Column_List">
+        bd_dm1, bd_dm2, gltjmc, glzd_dm1, glzd_dm2, id, yxbz
+    </sql>
+
+    <select id="getZdycxBdglgxs" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxBdglgxDto">
+        select
+        t.id,
+        t.bd_dm1,
+        t.bd_dm2,
+        t.gltjmc,
+        t.glzd_dm1,
+        t.glzd_dm2
+        from
+        zdycx_bdglgx t
+        <where>
+            <if test="form.bdDm1 != null and form.bdDm1 != ''">
+                and t.bd_dm1 = #{form.bdDm1}
+            </if>
+            <if test="form.bdDm2 != null and form.bdDm2 != ''">
+                and t.bd_dm2 = #{form.bdDm2}
+            </if>
+            and t.yxbz = 'Y'
+        </where>
+    </select>
+
+    <select id="getZdycxBdglgxByIds" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxBdglgxDto">
+        select
+        t.id,
+        t.bd_dm1,
+        t.bd_dm2,
+        t.gltjmc,
+        t.glzd_dm1,
+        t.glzd_dm2
+        from
+        zdycx_bdglgx t
+        <where>
+            <if test="ids != null and ids.size() > 0">
+                and t.id in
+                <foreach collection="ids" item="item" separator="," open="(" close=")">
+                    #{item}
+                </foreach>
+            </if>
+            and t.yxbz = 'Y'
+        </where>
+    </select>
+</mapper>

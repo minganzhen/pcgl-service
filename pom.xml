@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <parent>
+        <groupId>com.tencent.gov</groupId>
+        <artifactId>tsf-goff-boot-starter-parent</artifactId>
+        <version>2.1.0-RC3.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>cn.gov.chinatax.gt4</groupId>
+    <artifactId>sjfn-service</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>sjfn-service</name>
+    <description></description>
+
+    <modules>
+        <module>sjfn-service-api</module>
+        <module>sjfn-service-business</module>
+        <module>sjfn-service-test</module>
+        <module>sjfn-service-web</module>
+    </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.83</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>5.8.11</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.gov.chinatax.gt4</groupId>
+                <artifactId>sjfn-service-api</artifactId>
+                <version>${skzs.api.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <profiles>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>local</id>
+            <properties>
+                <profiles.active>local</profiles.active>
+                <!-- local开发环境工程引入api模块版本号，根据环境实际依赖版本修改 -->
+
+                <skzs.api.version>1.0.0</skzs.api.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profiles.active>prod</profiles.active>
+                <!-- prod环境工程引入api模块版本号，根据环境实际依赖版本修改 -->
+
+                <skzs.api.version>1.0.0</skzs.api.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>tsf</id>
+            <properties>
+                <profiles.active>tsf</profiles.active>
+                <!-- tsf环境工程引入api模块版本号，根据环境实际依赖版本修改 -->
+
+                <skzs.api.version>1.0.0</skzs.api.version>
+            </properties>
+        </profile>
+    </profiles>
+
+
+</project>

@@ -1,0 +1,37 @@
+management:
+  endpoint:
+    health:
+      enabled: false
+    info:
+      enabled: false
+spring:
+  application:
+    name: sjfn-service
+  cloud:
+    consul:
+      token: ${CONSUL_TOKEN:}
+      config:
+        aclToken: ${CONSUL_TOKEN:}
+        dataKey: data
+        enabled: ${ENABLE_CONFIG:true}
+        format: YAML
+        watch:
+          enabled: true
+      discovery:
+        aclToken: ${CONSUL_TOKEN:}
+        enabled: ${ENABLE_DISCOVERY:true}
+        register: ${ENABLE_REGISTER:true}
+        healthCheckInterval: 5s
+        healthCheckTimeout: 10s
+        instanceId: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+        preferIpAddress: true
+        service-name: ${spring.application.name}
+        health-check-path: /${spring.application.name}/_health
+        heartbeat:
+          enabled: true
+          ttlValue: 30
+      # consul地址和端口
+      host: ${CONSUL_HOST:10.0.44.199}
+      port: ${CONSUL_PORT:8500}
+      ribbon:
+        enabled: ${ENABLE_RIBBON:true}

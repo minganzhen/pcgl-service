@@ -1,0 +1,207 @@
+server:
+  port: 18080
+  servlet:
+    context-path: /sjfn-api
+spring:
+  application:
+    name: sjfn-service
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          url: jdbc:mysql://10.0.6.115:15399/swrd_zdycx?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: tdsqlpcloud
+          password: tdsqlpcloud
+          hikari:
+            maxPoolSize: 100
+            minIdle: 5
+            connection-test-query: select 1
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 150MB
+    hikari:
+      maximum-pool-size: 15
+      minimum-idle: 5
+      connection-test-query: select 1
+#  redis:
+#    host: 100.0.44.200
+#    password: dcits@123
+#    port: 6379
+#    timeout: 5000
+
+mybatis-plus:
+  type-handlers-package: com.tencent.gov.goff.common.v2.db.handler
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    call-setters-on-nulls: true
+    map-underscore-to-camel-case: true
+  global-config:
+    # 0 <= id <=31, datacenter-id + worker-id 确保唯一
+    # worker-id: 0
+    # datacenter-id: 0
+    db-config:
+      # 全局删除字段名
+      logic-delete-field: deleted
+      # 逻辑已删除值
+      logic-delete-value: 1
+      # 逻辑未删除值
+      logic-not-delete-value: 0
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+goff-logs:
+  enable: true
+  appName: ${spring.application.name}  #自己系统名
+  path: /data/logs/${spring.application.name}/  #自己的日志路径
+  activePattern: tsf
+  defaultPattern: "%d{yyyy-MM-dd HH:mm:ss.SSS}[%class->%method#%line][%level][%tid]:%msg%n"
+  tsfPattern: "%d{yyyy-MM-dd HH:mm:ss.SSS}[%class->%method#%line][%level][%trace]:%msg%n"
+  digestLogRules:
+    #拦截器日志，根据自己系统特性添加，比如：有调用第三方的模块，有调用dao层的，有系统对外提供接口的模块
+    - digestLogName: ${spring.application.name}-controller-digest
+      paramFormat: json ###可空，为空时采用toString打印参数。
+      expression: "execution(public * cn.gov.chinatax.gt4.swrdsm.controller..*.*(..))" #自己拦截controller方法
+
+--- #################### 系统配置 ####################
+chinatax:
+  gt4:
+    encryption:
+      enable: true
+      excludeUrls:
+        - /tpass/**
+
+#集成环境总局  添加日志生产者配置
+#log.operation:
+#  applicationName: swrdsm-service
+#  appCode: swrdsm-service
+#  enabled: true  #是否开启业务日志记录，true为开启业务日志，配合@OperationLog注解使用
+#  kafka: # 日志信息的kafka专用配置
+#    topic:   # topic
+#      name: topic_dppt_rz_gl_zj
+#    bootstrap-servers: 100.74.248.44:9092  # kafka server集成ip
+#    producer:
+#      acks: 1
+#      batch-size: 16384
+#      retries: 0
+#      buffer-memory: 33554432
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+# 导出excel文件，sheet页中最大数量
+#excel:
+#  export:
+#    sheet:
+#      maxCount: 1000
+#rio:
+#  service-url: 127.0.0.1:8080
+
+
+#css:
+#  redis:
+#    session-redis:
+##      url: "100.74.249.23:6379"
+#      url: "127.0.0.1:6379"
+#      password: "${redis_pass}"
+#    RedisCacheShared:
+##      url: "100.74.249.32:6379"
+#      url: "127.0.0.1:6379"
+#      password: '${redis_pass}'
+#  gt4common:
+#    hbase:
+#      - name: TxHbaseNw # 存储系统名称
+#        type: HbaseFileSystem # 存储类型固定HbaseFileSystem
+#        ak: "${ak_pass}" # Hbase secureId
+#        sk: "${sk_pass}"  # Hbase secureKey
+#        zk: 100.74.250.34,100.74.250.76,100.74.250.118,100.74.250.126,100.74.250.134 # Hbase zookeeper
+#        bucketName: sjkf_dzfp:zlwjccxx # Hbase 数据库名:表名
+#        extend:
+#          isdefault: 1 # 1为默认配置仅有一条可以为1
+#          type: nw
+#    http:
+#      isNw: true # 是否内网（默认为true），若true时将直接调用下列restful，否则将调用云服务集成平台（需要配置jcpt_gate.properties）
+#      mbxx:
+#        gt4-ggzhyw-app: http://ggzhyw.jcsj.tax.cn # 公共中心综合业务应用地址
+#        gt4-ggzlgl-app: http://ggzlgl.jcsj.tax.cn # 公共中心资料管理应用地址
+#        gt4-ggjczc-app: http://ggjczc.jcsj.tax.cn # 公共中心基础支撑应用地址
+#  datasources:
+#    cacheds: # 数据源名称，支持配置多个，名称唯一.下面的数据源配置与spring默认数据源配置格式和参数相同
+#      type: com.zaxxer.hikari.HikariDataSource
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      username: etax_yy
+#      password: "${db_pass}"
+#      url: jdbc:mysql://100.74.249.96:8080/zjkf_gt4_cache?characterEncoding=utf8&serverTimezone=GMT%2b8
+#      hikari:
+#        maximum-pool-size: 15
+#        minimum-idle: 1
+#        connection-test-query: select 1
+#  cache:
+#    local-cache: # 任意名称，唯一
+#      type: local # 本地缓存
+#      cache-name: LocalCache # 与t_xt_hcbxx.cache_name对应
+#      datasource: cacheds # 持久层组件配置的数据源名称
+#    redis-cache: # 任意名称，唯一
+#      type: redis # redis缓存
+#      cache-name: RedisCache # 与t_xt_hcbxx.cache_name对应
+#      datasource: cacheds # 持久层组件配置的数据源名称
+#      redis: session-redis # redis组件配置的redis名称
+#  cluster: #集群通讯组件配置
+#    redis: "session-redis"
+#  workflow:
+#    client:
+#      call: rest # 工作流客户端调用服务端方式
+#    server:
+#      application:
+#        url: http://workflow.jcsj.tax.cn # 工作流服务端访问域名端口
+#        name: workflow # 工作流服务端节点名称
+
+#sso:
+#  enabled: true
+#  redis: session-redis
+#  mode: sc
+
+#总、省局环境区分标志 总局配置"zj" 省局配置"sj"
+#dzfp:
+#  env:
+#    zsbz: "zj"
+
+
+# 号码生成器组件配置
+#id-generator:
+#  enable: true
+
+# 应用部署所在税务机关代码（总局为："00000000000"，各省为省税务机关代码、单列市为市税务机关代码）
+#  是否单列市参考 cs_dzfp_fphmxzqy 表
+#swrdsm-config:
+#  swjgDm: "14400000000"
+#
+#
+# 云服务集成平台客户端SDK配置，示例电票DMZ应用配置
+#yfwjcpt-sdk:
+#  enabled: true
+#  # 电票DMZ统一接入平台网关地址   省局应用配置省局使用的云服务集成平台，总局配置总局的的云服务集成平台， 配置内网的
+#  url: "http://yfwjcpt.jcsj.tax.cn/"
+#  # 电票DMZ应用在统一接入平台的应用id，如：dppt-dmz-app-id
+#  app: dzfpfwpt
+#  # 电票DMZ应用接入网关令牌,在统一接入平台获取
+#  token: 12345678
+#  # 电票DMZ应用部署所在税务机关代码,这里示例为广东
+#  swjgdm: "14400000000"
+#  # 电票DMZ应用部署在DMZ，此处配置为false
+#  nw: true
+#  # 电票DMZ应用调用电票内网接口时，可以使用FeignClient方式。前提条件在统一接入平台注册订阅接口。
+#  feign:
+#    # 电票内网应用在DMZ网关的接入地址。格式：网关地址/ebus/swjgdm_[nw或ww]/appId、
+#    # 省局应用配置省局使用的云服务集成平台，总局配置总局的的云服务集成平台， 配置内网的
+#    url: "http://ywkfcs.jcsj.tax.cn/ebus"
+#    url-sj: "http://ywkfcs.jczj.tax.cn/ebus"
+#    url-zj: "http://ywkfcs.jcsj.tax.cn/ebus/00000000000_NW/00000000000_nw_dzfpfwpt"
+#    # 测试环境使用模拟数据
+#    url-zj-gxk: "http://jdc-service/jdc/gxk/mock"
+#    # 正式环境使用此配置
+#    #url-zj-gxk: "http://ywkfcs.jcsj.tax.cn/ebus/00000000000_nw_sk-dppt-zj"
+#    # 数据支撑平台接口地址
+#    url-sjzcpt: "http://ywkfcs.cssj.tax.cn:80/ebus/14400000000_nw_sjzc-fwzx"
+#
+#common:
+#  sjcsdq: '14400000000'

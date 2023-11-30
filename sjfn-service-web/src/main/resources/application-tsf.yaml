@@ -1,0 +1,46 @@
+server:
+  servlet:
+    context-path: /sjfn-api
+  max-http-header-size: 20480
+
+spring:
+  application:
+    name: sjfn-service
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 150MB
+      
+mybatis-plus:
+  type-handlers-package: com.tencent.gov.goff.common.v2.db.handler
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+goff-logs:
+  enable: true
+  appName: ${spring.application.name}  
+  path: /data/logs/${spring.application.name}/  
+  activePattern: tsf
+  defaultPattern: "%d{yyyy-MM-dd HH:mm:ss.SSS}[%class->%method#%line][%level][%tid]:%msg%n"
+  tsfPattern: "%d{yyyy-MM-dd HH:mm:ss.SSS}[%class->%method#%line][%level][%trace]:%msg%n"
+  digestLogRules:
+    - digestLogName: ${spring.application.name}-controller-digest
+      paramFormat: json
+      expression: "execution(public * cn.gov.chinatax.gt4.skzs.controller..*.*(..))"
+    - digestLogName: ${spring.application.name}-operation
+      openOperationLog: true
+      expression: "execution(public * cn.gov.chinatax.gt4.skzs.controller..*.*(..))"
+  max-history: 7
+  total-size-cap: 10GB
+
+
+tct:
+  enabled: true
+  client:
+    properties:
+      task.factory.name: "cn.gov.chinatax.gt4.swrdsm.service.SkzsExecutableTaskFactory"
+
