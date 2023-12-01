@@ -35,6 +35,17 @@ public class SzfnService {
             new SzfnHkHbPzDto("数据赋能","慧办","税务登记-纳税人（扣缴义务人）身份信息报告","个体工商户信息确认","equal"),
             new SzfnHkHbPzDto("数据赋能","慧办","税务登记-纳税人（扣缴义务人）身份信息报告","一照一码户信息确认","equal")
     );
+    private static final List<SzfnHkHbPzDtoV3> HB_HK_PZX_V3 = Lists.newArrayList(
+            new SzfnHkHbPzDtoV3("注销税务登记","N","Y"),
+            new SzfnHkHbPzDtoV3("退抵税费审批","N","Y"),
+            new SzfnHkHbPzDtoV3("税（费）种认定","Y","N"),
+            new SzfnHkHbPzDtoV3("变更税务登记","Y","N"),
+            new SzfnHkHbPzDtoV3("修改设立税务登记信息（补偿）","Y","N"),
+            new SzfnHkHbPzDtoV3("纳税人（扣缴义务人）身份信息报告","Y","N"),
+            new SzfnHkHbPzDtoV3("工商部门登记信息查询确认","Y","N"),
+            new SzfnHkHbPzDtoV3("个体工商户信息确认","Y","N"),
+            new SzfnHkHbPzDtoV3("一照一码户信息确认","Y","N")
+    );
 
 
     public ZhSwrdCsSjfnYwtxnrcsbDto selectYwbltx(String gnbs) {
@@ -110,5 +121,9 @@ public class SzfnService {
 
     public List<SzfnHkHbPzDto> selectV2HkAndHb() {
         return HB_HK_PZX;
+    }
+
+    public  List<SzfnHkHbPzDtoV3>  selectV3HkAndHb() {
+        return HB_HK_PZX_V3;
     }
 }

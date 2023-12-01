@@ -1,6 +1,7 @@
 package cn.gov.chinatax.gt4.swrdsm.controller.szfn;
 
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnHkHbPzDto;
+import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnHkHbPzDtoV3;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnZjjgDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.ZhSwrdCsSjfnYwtxnrcsbDto;
 import cn.gov.chinatax.gt4.swrdsm.service.szfn.SzfnService;
@@ -62,6 +63,11 @@ public class SzfnController {
     @GetMapping("/v2/select-hkandhb")
     public ServerResponse<List<SzfnHkHbPzDto>> selectV2HkAndHb() {
         return ServerResponse.success(szfnService.selectV2HkAndHb());
+    }
+    @ApiOperation(value = "数据赋能-慧看/慧办按钮显示 v3版本")
+    @GetMapping("/v3/select-hkandhb")
+    public ServerResponse<List<SzfnHkHbPzDtoV3>> selectV3HkAndHb() {
+        return ServerResponse.success(szfnService.selectV3HkAndHb());
     }
 
 

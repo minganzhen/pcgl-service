@@ -1,6 +1,7 @@
 package cn.gov.chinatax.gt4.swrdsm.api.szfn;
 
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnHkHbPzDto;
+import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnHkHbPzDtoV3;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnZjjgDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.ZhSwrdCsSjfnYwtxnrcsbDto;
 import com.tencent.gov.goff.common.v2.pojo.bean.ServerResponse;
@@ -41,6 +42,6 @@ public interface SzfnApi {
     public ServerResponse<Map<String, Object>> selectYc(@RequestParam(value = "shtyxyDm") String shtyxyDm);
 
     @ApiOperation(value = "数字赋能-慧看/慧办按钮显示")
-    @GetMapping("/v2/select-hkandhb")
-    public ServerResponse<List<SzfnHkHbPzDto>> selectV2HkAndHb();
+    @GetMapping("/v3/select-hkandhb")
+    public ServerResponse<List<SzfnHkHbPzDtoV3>> selectV3HkAndHb();
 }
