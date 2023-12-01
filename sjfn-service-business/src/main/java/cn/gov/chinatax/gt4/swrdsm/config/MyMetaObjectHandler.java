@@ -20,8 +20,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         // 创建和修改时间自动填充当前时间
-        this.strictInsertFill(metaObject, "lrsj", LocalDateTime.class, LocalDateTime.now());
-        this.strictInsertFill(metaObject, "xgsj", LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, "lrrq", LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, "xgrq", LocalDateTime.class, LocalDateTime.now());
     }
 
     /**
@@ -30,7 +30,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         // 修改时间自动填充当前时间
-        this.strictUpdateFill(metaObject, "xgsj", LocalDateTime.class, LocalDateTime.now());
+        this.strictUpdateFill(metaObject, "xgrq", LocalDateTime.class, LocalDateTime.now());
     }
 
 }

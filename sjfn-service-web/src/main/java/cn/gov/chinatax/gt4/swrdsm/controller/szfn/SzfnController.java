@@ -1,6 +1,8 @@
 package cn.gov.chinatax.gt4.swrdsm.controller.szfn;
 
-import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnZjjgDTO;
+import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnHkHbPzDto;
+import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnZjjgDto;
+import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.ZhSwrdCsSjfnYwtxnrcsbDto;
 import cn.gov.chinatax.gt4.swrdsm.service.szfn.SzfnService;
 import com.tencent.gov.goff.common.v2.pojo.bean.ServerResponse;
 import io.swagger.annotations.Api;
@@ -24,7 +26,7 @@ import java.util.Map;
  * @Compiler：1.8
  * @Description：数字赋能接口
  */
-@Api(value = "数字赋能")
+@Api(value = "数据赋能 - 接口")
 @RestController
 @RequestMapping("/szfn")
 public class SzfnController {
@@ -32,22 +34,34 @@ public class SzfnController {
     @Resource
     private SzfnService szfnService;
 
-    @ApiOperation(value = "数字赋能-查询业务办理提醒")
+    @ApiOperation(value = "数据赋能-小贴士")
     @GetMapping("/v1/select-ywbltx")
-    public ServerResponse<List<String>> selectYwbltx() {
-        return ServerResponse.success(szfnService.selectYwbltx());
+    public ServerResponse<ZhSwrdCsSjfnYwtxnrcsbDto> selectYwbltx(@RequestParam(value = "gnbs") String gnbs) {
+        return ServerResponse.success(szfnService.selectYwbltx(gnbs));
     }
 
-    @ApiOperation(value = "数字赋能-智检结果")
+    @ApiOperation(value = "数据赋能-慧办/小红点")
     @GetMapping("/v1/select-zjjg")
-    public ServerResponse<List<SzfnZjjgDTO>> selectZjjg() {
-        return ServerResponse.success(szfnService.selectZjjg());
+    public ServerResponse<List<SzfnZjjgDto>> selectZjjg(@RequestParam(value = "llrsfid", required = false) String llrsfid) {
+        return ServerResponse.success(szfnService.selectZjjg(llrsfid));
     }
 
-    @ApiOperation(value = "数字赋能-易查")
+    @ApiOperation(value = "数据赋能-慧看")
     @GetMapping("/v1/select-yc")
     public ServerResponse<Map<String, Object>> selectYc(@RequestParam(value = "shtyxyDm") String shtyxyDm) {
         return ServerResponse.success(szfnService.selectYc(shtyxyDm));
+    }
+
+    @ApiOperation(value = "数据赋能-慧看/慧办按钮显示")
+    @GetMapping("/v1/select-hkandhb")
+    public ServerResponse<Map<String, Boolean>> selectHkAndHb(@RequestParam(value = "ywblmc") String ywblmc) {
+        return ServerResponse.success(szfnService.selectHkAndHb(ywblmc));
+    }
+
+    @ApiOperation(value = "数据赋能-慧看/慧办按钮显示 v2版本")
+    @GetMapping("/v2/select-hkandhb")
+    public ServerResponse<List<SzfnHkHbPzDto>> selectV2HkAndHb() {
+        return ServerResponse.success(szfnService.selectV2HkAndHb());
     }
 
 

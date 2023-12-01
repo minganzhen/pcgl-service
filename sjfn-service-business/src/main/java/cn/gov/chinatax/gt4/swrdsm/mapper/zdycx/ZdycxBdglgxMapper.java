@@ -4,8 +4,9 @@ import cn.gov.chinatax.gt4.swrdsm.core.mp.mapper.BaseMapperX;
 import cn.gov.chinatax.gt4.swrdsm.pojo.domain.zdycx.ZdycxBdglgx;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxBdglgxDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxBdglgxQueryDto;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**

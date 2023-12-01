@@ -21,29 +21,76 @@ import java.util.Date;
 @Data
 public class BaseEntity implements Serializable {
 
-    /* 录入人人代码*/
-    @TableField(value = "lrr_dm",fill = FieldFill.INSERT, jdbcType = JdbcType.VARCHAR)
-    private String lrrDm;
+//    /* 录入人人代码*/
+//    @TableField(value = "lrr_dm",fill = FieldFill.INSERT, jdbcType = JdbcType.VARCHAR)
+//    private String lrrDm;
+//
+//    /* 录入人人代码*/
+//    @TableField(value = "lrrswjg_dm",fill = FieldFill.INSERT, jdbcType = JdbcType.VARCHAR)
+//    private String lrrswjgDm;
+//
+//    /* 录入时间 */
+//    @TableField(fill = FieldFill.INSERT)
+//    private Date lrsj;
+//
+//
+//    /* 录入人人代码*/
+//    @TableField(value = "xgr_dm",fill = FieldFill.INSERT_UPDATE, jdbcType = JdbcType.VARCHAR)
+//    private String xgrDm;
+//
+//    /* 录入人人代码*/
+//    @TableField(value = "xgrswjg_dm",fill = FieldFill.INSERT_UPDATE, jdbcType = JdbcType.VARCHAR)
+//    private String xgrswjgDm;
+//
+//    /* 录入时间 */
+//    @TableField(fill = FieldFill.INSERT_UPDATE)
+//    private Date xgsj;
+    /**
+     * 录入日期
+     */
+    @TableField(value = "LRRQ",fill = FieldFill.INSERT)
+    private Date lrrq;
 
-    /* 录入人人代码*/
-    @TableField(value = "lrrswjg_dm",fill = FieldFill.INSERT, jdbcType = JdbcType.VARCHAR)
-    private String lrrswjgDm;
+    /**
+     * 录入人身份ID
+     */
+    @TableField(value = "LRRSFID",fill = FieldFill.INSERT, jdbcType = JdbcType.VARCHAR)
+    private String lrrsfid;
 
-    /* 录入时间 */
-    @TableField(fill = FieldFill.INSERT)
-    private Date lrsj;
+    /**
+     * 数据产生地区
+     */
+    @TableField(value = "SJCSDQ")
+    private String sjcsdq;
 
+    /**
+     * 数据归属地区
+     */
+    @TableField(value = "SJGSDQ")
+    private String sjgsdq;
 
-    /* 录入人人代码*/
-    @TableField(value = "xgr_dm",fill = FieldFill.INSERT_UPDATE, jdbcType = JdbcType.VARCHAR)
-    private String xgrDm;
+    /**
+     * 数据同步时间
+     */
+    @TableField(value = "SJTB_SJ")
+    private Date sjtbSj;
 
-    /* 录入人人代码*/
-    @TableField(value = "xgrswjg_dm",fill = FieldFill.INSERT_UPDATE, jdbcType = JdbcType.VARCHAR)
-    private String xgrswjgDm;
+    /**
+     * 修改日期
+     */
+    @TableField(value = "XGRQ",fill = FieldFill.INSERT_UPDATE)
+    private Date xgrq;
 
-    /* 录入时间 */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date xgsj;
+    /**
+     * 修改人身份ID
+     */
+    @TableField(value = "XGRSFID",fill = FieldFill.INSERT_UPDATE, jdbcType = JdbcType.VARCHAR)
+    private String xgrsfid;
+
+    /**
+     * 业务渠道代码
+     */
+    @TableField(value = "YWQD_DM")
+    private String ywqdDm;
 
 }

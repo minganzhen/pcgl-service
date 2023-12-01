@@ -4,7 +4,6 @@ import cn.gov.chinatax.gt4.swrdsm.core.assertions.AssertUtil;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.service.BaseServiceX;
 import cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxBdglgxMapper;
 import cn.gov.chinatax.gt4.swrdsm.pojo.domain.zdycx.ZdycxBdglgx;
-import cn.gov.chinatax.gt4.swrdsm.pojo.domain.zdycx.ZdycxZt;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxBdglgxDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxBdglgxQueryDto;
 import com.baomidou.dynamic.datasource.annotation.DS;

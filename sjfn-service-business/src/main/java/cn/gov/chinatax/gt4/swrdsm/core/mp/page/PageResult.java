@@ -2,6 +2,7 @@ package cn.gov.chinatax.gt4.swrdsm.core.mp.page;
 
 import cn.gov.chinatax.gt4.swrdsm.pojo.common.PageResultApi;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,29 +15,33 @@ import java.util.List;
 public class PageResult<T> implements Serializable {
 
     @ApiModelProperty(value = "数据", required = true)
-    private List<T> List;
+    @JsonProperty("List")
+    private List<T> list;
 
     @ApiModelProperty(value = "总量", required = true)
-    private Long Total;
+    @JsonProperty("Total")
+    private Long total;
 
     @ApiModelProperty(value = "页码", required = true)
-    private Long PageNumber;
+    @JsonProperty("PageNumber")
+    private Long pageNumber;
 
     @ApiModelProperty(value = "页数", required = true)
-    private Long PageSize;
+    @JsonProperty("PageSize")
+    private Long pageSize;
 
     @Deprecated
     public PageResult(List<T> list, Long total) {
-        this.List = list;
-        this.Total = total;
+        this.list = list;
+        this.total = total;
     }
 
     @Deprecated
     public PageResult(List<T> list, Long total, Long pageNo, Long pageSize) {
-        this.List = list;
-        this.Total = total;
-        this.PageNumber = pageNo;
-        this.PageSize = pageSize;
+        this.list = list;
+        this.total = total;
+        this.pageNumber = pageNo;
+        this.pageSize = pageSize;
     }
 
     @Deprecated
@@ -44,20 +49,20 @@ public class PageResult<T> implements Serializable {
         // 支持page
         if (list instanceof Page) {
             Page<T> page = (Page<T>) list;
-            this.Total = page.getTotal();
-            this.PageNumber = page.getCurrent();
-            this.PageSize = page.getSize();
-            this.List = page.getRecords();
+            this.total = page.getTotal();
+            this.pageNumber = page.getCurrent();
+            this.pageSize = page.getSize();
+            this.list = page.getRecords();
         } else {
-            this.List = list;
+            this.list = list;
         }
     }
     public PageResult(PageResultApi<T> page) {
         // 支持page
-        this.Total = page.getTotal();
-        this.PageNumber = page.getPageNumber();
-        this.PageSize = page.getPageSize();
-        this.List = page.getList();
+        this.total = page.getTotal();
+        this.pageNumber = page.getPageNumber();
+        this.pageSize = page.getPageSize();
+        this.list = page.getList();
     }
 
     /**
@@ -66,10 +71,10 @@ public class PageResult<T> implements Serializable {
      */
     public PageResult(Page page) {
         // 支持page
-        this.Total = page.getTotal();
-        this.PageNumber = page.getCurrent();
-        this.PageSize = page.getSize();
-        this.List = page.getRecords();
+        this.total = page.getTotal();
+        this.pageNumber = page.getCurrent();
+        this.pageSize = page.getSize();
+        this.list = page.getRecords();
     }
 
     /**

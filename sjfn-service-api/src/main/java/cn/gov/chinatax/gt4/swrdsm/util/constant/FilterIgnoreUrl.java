@@ -1,8 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.util.constant;
 
 
-import java.util.List;
-
 /**
  * @Copyright：Copyright (c) 2002-2023 Digitalchina CO.,LTD.  All rights reserved.
  * @Company：神州数码信息系统集成服务有限公司

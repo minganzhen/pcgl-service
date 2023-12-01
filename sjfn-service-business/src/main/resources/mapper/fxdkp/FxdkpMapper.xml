@@ -4,18 +4,18 @@
 
     <select id="selectFxdkp" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.fxdkp.FxdkpDto">
         select
-            shk.HCLC_KP_UUID,
             shk.JSYF,
             shk.HCDW,
             swjg.swjg_mc as HSDWMC,
-            shk.YDZS,
-            shk.YHCYDS,
-            shk.WHCYDS,
-            shk.YXBZ
+            sum(shk.YDZS) as YDZS,
+            sum(shk.YHCYDS) as YHCYDS,
+            SUM(shk.WHCYDS) as WHCYDS
         from swrd_kp.swrd_hclc_kp shk
         left join kjhsgl.di_swjg swjg on shk.HCDW = swjg.swjg_dm
-        where JSYF = #{form.jsyf}
-        and HCDW = #{form.swjgDm}
+        where shk.JSYF = #{form.jsyf}
+        and shk.HCDW = #{form.swjgDm}
+        and shk.yxbz = 'Y'
+        group by JSYF,HCDW
     </select>
 
 

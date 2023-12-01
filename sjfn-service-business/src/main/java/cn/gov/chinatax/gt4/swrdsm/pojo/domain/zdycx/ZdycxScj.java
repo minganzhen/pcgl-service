@@ -4,11 +4,13 @@ import cn.gov.chinatax.gt4.swrdsm.core.mp.entity.BaseEntity;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxTjXsDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxZslDto;
 import cn.gov.chinatax.gt4.swrdsm.util.core.KeyValue;
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

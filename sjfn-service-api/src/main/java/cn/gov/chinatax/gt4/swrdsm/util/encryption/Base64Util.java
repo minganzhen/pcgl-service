@@ -1,6 +1,5 @@
 package cn.gov.chinatax.gt4.swrdsm.util.encryption;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 

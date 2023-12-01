@@ -28,7 +28,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static cn.gov.chinatax.gt4.swrdsm.core.util.SqlExecJoinUtil.*;
-import static cn.gov.chinatax.gt4.swrdsm.core.util.SqlExecJoinUtil.getDyhStr;
 
 /**
  * @Copyright：Copyright (c) 2002-2023 Digitalchina CO.,LTD.  All rights reserved.
@@ -79,7 +78,7 @@ public abstract class ZdycxAbstractExecService implements ZdycxInterFaceExecServ
      * @param queryDto
      * @return
      */
-    public StringBuilder builderTableSql(ZdycxMxcxQueryDto queryDto) {
+    public StringBuilder builderTableSql(ZdycxMxcxQueryDto queryDto, Boolean sfMxCx) {
         StringBuilder TableSql = new StringBuilder();
         // 1、构建 tableSql
         KeyValue<String, String> bd01 = null;
@@ -101,7 +100,7 @@ public abstract class ZdycxAbstractExecService implements ZdycxInterFaceExecServ
                 BdGlgxEnum anEnum = BdGlgxEnum.getEnum(queryDto.getBdGlgxLx());
                 AssertUtil.isNotNull(anEnum, String.format("【自定义查询】 表单关联关系枚举:%s 找不到配置，请联系管理员！", queryDto.getBdGlgxLx()));
                 List<ZdycxBdglgxDto> zdycxBdglgxes = bdglgxService.getZdycxBdglgxs(queryDto.getBdGlgxs());
-                getLeftOrInner(TableSql, bd, zdycxBdglgxes, anEnum);
+                getLeftOrInner(TableSql, bd, zdycxBdglgxes, anEnum, sfMxCx);
             }
             // 表二三 关联
             if (i == 2) {
@@ -109,7 +108,7 @@ public abstract class ZdycxAbstractExecService implements ZdycxInterFaceExecServ
                 List<ZdycxBdglgxDto> zdycxBdglgxes = bdglgxService.getZdycxBdglgxs(new ZdycxBdglgxQueryDto()
                         .setBdDm1(bd02.getKey())
                         .setBdDm2(bd.getKey()));
-                getLeftOrInner(TableSql, bd, zdycxBdglgxes, BdGlgxEnum.LEFT);
+                getLeftOrInner(TableSql, bd, zdycxBdglgxes, BdGlgxEnum.LEFT, sfMxCx);
             }
         }
         return TableSql;
@@ -126,8 +125,8 @@ public abstract class ZdycxAbstractExecService implements ZdycxInterFaceExecServ
         StringBuilder whereSql = new StringBuilder(" 1 = 1 ");
         List<ZdycxTjXsDto> zdycxTjXsDtos = queryDto.getBdKxtjLabel().entrySet()
                 .stream().map(item -> item.getValue()).flatMap(List::stream).collect(Collectors.toList());
-
-        queryDto.getTjfxJszds().stream().map(item -> item.getDbfs()).flatMap(List::stream)
+        queryDto.getTjfxJszds().stream().map(item -> item.getDbfs())
+                .flatMap(List::stream)
                 .collect(Collectors.toSet()).stream().forEach(s -> {
                     thbMap.put(s, s);
                 });
@@ -492,6 +491,7 @@ public abstract class ZdycxAbstractExecService implements ZdycxInterFaceExecServ
             , KeyValue<String, String> bd
             , List<ZdycxBdglgxDto> zdycxBdglgxes
             , BdGlgxEnum bdGlgxEnum
+            , Boolean sfMxCx
     ) {
 
         TableSql.append(bdGlgxEnum.getValue())
@@ -508,6 +508,12 @@ public abstract class ZdycxAbstractExecService implements ZdycxInterFaceExecServ
             TableSql.append(getTableDianStr(bdglgx.getBdDm1(), bdglgx.getGlzdDm1()));
             TableSql.append(EQUAL);
             TableSql.append(getTableDianStr(bdglgx.getBdDm2(), bdglgx.getGlzdDm2()));
+
+        }
+        ZdycxBdglgxDto bdglgx0 = zdycxBdglgxes.get(0);
+        if (ObjectUtil.equals(bdglgx0.getBdDm1(), "BD12101")
+                || ObjectUtil.equals(bdglgx0.getBdDm2(), "BD12101")) {
+            TableSql.append(sfMxCx ? "AND BD12101.EWBLXH != 5 " : "AND BD12101.EWBLXH = 5 ");
         }
     }
 }

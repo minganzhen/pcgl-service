@@ -7,7 +7,6 @@ import cn.gov.chinatax.gt4.swrdsm.util.constant.Constant;
 import cn.gov.chinatax.gt4.swrdsm.util.encryption.DecryptManage;
 import com.alibaba.fastjson.JSONObject;
 import com.tencent.gov.goff.common.v2.core.configuration.ExceptionController;
-import com.tencent.gov.goff.common.v2.core.exception.GoffException;
 import com.tencent.gov.goff.common.v2.core.util.IDUtils;
 import com.tencent.gov.goff.common.v2.core.util.SerializeUtil;
 import com.tencent.gov.goff.common.v2.pojo.bean.ServerResponse;

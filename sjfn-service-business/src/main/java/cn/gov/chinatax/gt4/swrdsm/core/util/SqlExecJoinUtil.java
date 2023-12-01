@@ -39,12 +39,12 @@ public class SqlExecJoinUtil {
      * @return
      */
     public static String getDyhStr(Object value) {
-        return java.lang.String.format(DYH_STR, value.toString());
+        return String.format(DYH_STR, value.toString());
     }
 
 
     public static String getTableDianStr(String bmmc, String zdmc) {
-        return java.lang.String.format(DIAN_STR, bmmc, zdmc);
+        return String.format(DIAN_STR, bmmc, zdmc);
     }
     public static String getQStr(String lmDm) {
         return lmDm + Q;

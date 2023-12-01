@@ -2,16 +2,12 @@ package cn.gov.chinatax.gt4.swrdsm.pojo.vo.zdycx;
 
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxTjXsDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxZslDto;
-import cn.gov.chinatax.gt4.swrdsm.util.core.KeyValue;
-import com.tencent.gov.goff.common.v2.pojo.bean.QueryParam;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @Copyright：Copyright (c) 2002-2023 Digitalchina CO.,LTD.  All rights reserved.
@@ -35,6 +31,6 @@ public class ZdycxTjFxBeforeQueryDto {
 
     @ApiModelProperty(value = "表单展示列")
     @NotEmpty(message = "表单展示列不能为空")
-    private Set<ZdycxZslDto> bdZsls;
+    private Map<String,List<ZdycxZslDto>> bdZsls;
 
 }

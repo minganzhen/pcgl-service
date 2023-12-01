@@ -1,13 +1,10 @@
 package cn.gov.chinatax.gt4.swrdsm.pojo.vo.zdycx;
 
-import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxLmgxbDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxZslDto;
-import cn.gov.chinatax.gt4.swrdsm.util.core.KeyValue;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Copyright：Copyright (c) 2002-2023 Digitalchina CO.,LTD.  All rights reserved.

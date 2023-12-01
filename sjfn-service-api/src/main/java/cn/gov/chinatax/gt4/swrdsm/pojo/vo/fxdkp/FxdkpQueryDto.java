@@ -1,18 +1,11 @@
 package cn.gov.chinatax.gt4.swrdsm.pojo.vo.fxdkp;
 
-import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxTjXsDto;
-import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxZslDto;
-import cn.gov.chinatax.gt4.swrdsm.util.core.KeyValue;
 import com.tencent.gov.goff.common.v2.pojo.bean.QueryParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @Author：zhaocn

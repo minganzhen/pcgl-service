@@ -3,18 +3,13 @@ package cn.gov.chinatax.gt4.swrdsm.service.zdycx;
 import cn.gov.chinatax.gt4.swrdsm.core.assertions.AssertUtil;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.service.BaseServiceX;
-import cn.gov.chinatax.gt4.swrdsm.core.util.JsonUtil;
 import cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxScjMapper;
 import cn.gov.chinatax.gt4.swrdsm.pojo.domain.zdycx.ZdycxScj;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjEditDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjQueryDto;
-import cn.gov.chinatax.gt4.swrdsm.util.enums.SwrdsmErrorCode;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tencent.gov.goff.common.v2.db.util.BeanCopierUtil;
-import com.tencent.gov.goff.common.v2.pojo.bean.DataList;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

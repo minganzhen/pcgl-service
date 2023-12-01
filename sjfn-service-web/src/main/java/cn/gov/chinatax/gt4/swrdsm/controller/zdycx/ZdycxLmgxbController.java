@@ -1,6 +1,5 @@
 package cn.gov.chinatax.gt4.swrdsm.controller.zdycx;
 
-import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxLmgxbDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxLmgxbQueryDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxTjXsDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxZslDto;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * 接口

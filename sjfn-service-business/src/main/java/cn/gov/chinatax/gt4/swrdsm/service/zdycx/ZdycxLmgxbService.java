@@ -10,6 +10,7 @@ import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxZslDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.vo.zdycx.ZdycxTjFxBeforeQueryDto;
 import cn.gov.chinatax.gt4.swrdsm.util.core.ValueLabel;
 import cn.gov.chinatax.gt4.swrdsm.util.enums.BdTjfxDbEnum;
+import cn.gov.chinatax.gt4.swrdsm.util.enums.BdTjfxJsEnum;
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
@@ -18,7 +19,6 @@ import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -35,6 +35,9 @@ public class ZdycxLmgxbService extends BaseServiceX<ZdycxLmgxbMapper, ZdycxLmgxb
     private static final List<BdTjfxDbEnum> TB_LIST = Lists.newArrayList(BdTjfxDbEnum.TB);
     private static final List<BdTjfxDbEnum> TB_HB_LIST = Lists.newArrayList(BdTjfxDbEnum.TB, BdTjfxDbEnum.HB);
     public static final List<String> RQ_LIST = Lists.newArrayList("rq", "rqfw");
+
+    public static final List<ValueLabel<String, String>> TJFX_TJFF_LIST =
+            Arrays.stream(BdTjfxJsEnum.values()).map(item -> new ValueLabel<String, String>(item.getValue(), item.getLabel())).collect(Collectors.toList());
 
     /**
      * 获取展示列表
@@ -75,10 +78,15 @@ public class ZdycxLmgxbService extends BaseServiceX<ZdycxLmgxbMapper, ZdycxLmgxb
     }
 
     public Map<String, Object> selectTjfx(ZdycxTjFxBeforeQueryDto queryDto) {
-        Set<ZdycxZslDto> bdZsls = queryDto.getBdZsls();
+        Set<ZdycxZslDto> bdZsls = new LinkedHashSet<>();
+        for (Map.Entry<String, List<ZdycxZslDto>> entry : queryDto.getBdZsls().entrySet()) {
+            bdZsls.addAll(entry.getValue().stream().sorted().collect(Collectors.toList())); // 在处理一次排序问题
+        }
         Map<String, Object> returnMap = new HashMap<>(4);
         List<ZdycxZslDto> fxzdList = bdZsls.stream().filter(item -> ObjectUtil.equals(item.getTjfxfzbz(), "Y")).collect(Collectors.toList());
+        AssertUtil.isNotEmpty(fxzdList,"【自定义查询】统计分析分组字段为空，不能进行统计分析操作，请检查选择列数据！");
         List<ZdycxZslDto> tjfxkxzList = bdZsls.stream().filter(item -> ObjectUtil.equals(item.getTjfxkxzbz(), "Y")).collect(Collectors.toList());
+        AssertUtil.isNotEmpty(tjfxkxzList,"【自定义查询】统计分析可选值为空，不能进行统计分析操作，请检查选择列数据！");
         List<ZdycxTjXsDto> zdycxTjXsDtos = queryDto.getBdKxtjLabel().entrySet()
                 .stream().map(item -> item.getValue()).flatMap(List::stream).collect(Collectors.toList());
         List<ZdycxTjXsDto> tjXsDtos = zdycxTjXsDtos.stream().filter(item -> RQ_LIST.contains(item.getTjlx())).collect(Collectors.toList());
@@ -96,11 +104,12 @@ public class ZdycxLmgxbService extends BaseServiceX<ZdycxLmgxbMapper, ZdycxLmgxb
             if (dbfsListAll.size() == 1 && aBoolean) {
                 // 转value和label
                 List<ValueLabel> valueLabels = dbfsListAll.get(0).stream().map(item -> new ValueLabel().setValue(item.getValue()).setLabel(item.getLabel())).collect(Collectors.toList());
-                returnMap.put("dbfsList", valueLabels);
+                returnMap.put("tjfxDbfsList", valueLabels);
             }
         }
-        returnMap.put("fxzdList", fxzdList);
-        returnMap.put("tjfxkxzList", tjfxkxzList);
+        returnMap.put("tjfxFxzdList", fxzdList);
+        returnMap.put("tjfxTjffList", TJFX_TJFF_LIST);
+        returnMap.put("tjfxKxzList", tjfxkxzList);
         return returnMap;
     }
 
@@ -120,18 +129,11 @@ public class ZdycxLmgxbService extends BaseServiceX<ZdycxLmgxbMapper, ZdycxLmgxb
             if (q && z) {
                 DateTime dateQ = DateUtil.parse(queryDto.getBdKxtjValue().get(sjqKey).toString(), "yyyy-MM-dd");
                 DateTime dateZ = DateUtil.parse(queryDto.getBdKxtjValue().get(sjzKey).toString(), "yyyy-MM-dd");
-                if (dateQ.getField(DateField.YEAR) == dateZ.getField(DateField.YEAR)
-                        && dateQ.getField(DateField.MONTH) != dateZ.getField(DateField.MONTH)
-                ) {
-                    dbfsListAll.add(TB_LIST);
+                if (dateQ.getField(DateField.YEAR) == dateZ.getField(DateField.YEAR)) {
+                    if (dateQ.getField(DateField.MONTH) != dateZ.getField(DateField.MONTH)) dbfsListAll.add(TB_LIST);
+                    if (dateQ.getField(DateField.MONTH) == dateZ.getField(DateField.MONTH)) dbfsListAll.add(TB_HB_LIST);
                 }
-                if (dateQ.getField(DateField.YEAR) == dateZ.getField(DateField.YEAR)
-                        && dateQ.getField(DateField.MONTH) == dateZ.getField(DateField.MONTH)
-                ) {
-                    dbfsListAll.add(TB_HB_LIST);
-                }
-            }
-            if (q || z) {
+            } else {
                 // 不允许添加数据
                 return false;
             }

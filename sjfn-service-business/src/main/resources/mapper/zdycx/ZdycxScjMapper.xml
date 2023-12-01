@@ -16,37 +16,30 @@
         <result column="bd_mhtj" property="bdMhtj" />
         <result column="bd_zsls" property="bdZsls"
                 typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
-        <result column="lrr_dm" property="lrrDm" />
-        <result column="lrrswjg_dm" property="lrrswjgDm" />
-        <result column="lrsj" property="lrsj" />
+
+        <result column="lrrsfid" property="lrrsfid" />
+        <result column="lrrq" property="lrrq" />
         <result column="scmc" property="scmc" />
-        <result column="xgr_dm" property="xgrDm" />
-        <result column="xgrswjg_dm" property="xgrswjgDm" />
-        <result column="xgsj" property="xgsj" />
+        <result column="xgrsfid" property="xgrsfid" />
+        <result column="xgrq" property="xgrq" />
         <result column="yxbz" property="yxbz" />
     </resultMap>
-
-    <!-- 表字段 -->
-    <sql id="Base_Column_List">
-        db_dms, db_glgx_lx, db_glgxs, db_kxtj_label, db_kxtj_value, db_mhtj, db_zsls, id, lrr_dm, lrrswjg_dm, lrsj, scmc, xgr_dm, xgrswjg_dm, xgsj, yxbz
-    </sql>
 
     <select id="getZdycxScjs" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjDto">
         select
         t.id,
         t.scmc,
-        t.lrr_dm,
-        t.lrrswjg_dm,
-        t.lrsj,
-        t.xgr_dm,
-        t.xgrswjg_dm,
-        t.xgsj,
+        t.lrrsfid,
+        t.lrrq,
+        t.xgrsfid,
+        t.xgrq,
         t.yxbz
         from
         zdycx_scj t
+
         <where>
-            <if test="form.lrrDm != null and form.lrrDm != ''">
-                and t.lrr_dm = #{form.lrrDm}
+            <if test="form.lrrsfid != null and form.lrrsfid != ''">
+                and t.lrrsfid = #{form.lrrsfid}
             </if>
             <if test="form.scmc != null and form.scmc != ''">
                 and t.scmc = #{form.scmc}
@@ -66,12 +59,10 @@
         t.bd_kxtj_value,
         t.bd_mhtj,
         t.bd_zsls,
-        t.lrr_dm,
-        t.lrrswjg_dm,
-        t.lrsj,
-        t.xgr_dm,
-        t.xgrswjg_dm,
-        t.xgsj,
+        t.lrrsfid,
+        t.lrrq,
+        t.xgrsfid,
+        t.xgrq,
         t.yxbz
         from
         zdycx_scj t

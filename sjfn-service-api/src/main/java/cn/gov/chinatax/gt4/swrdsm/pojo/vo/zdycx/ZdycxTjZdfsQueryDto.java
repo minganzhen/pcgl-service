@@ -4,6 +4,7 @@ import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxZslDto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class ZdycxTjZdfsQueryDto {
     private String jsfs;
 
     @ApiModelProperty(value = "对比方式 同比、环比使用")
-    private List<String> dbfs;
+    private List<String> dbfs = new ArrayList<>();
 
     @ApiModelProperty(value = "计算字段")
     private ZdycxZslDto jszd;

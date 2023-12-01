@@ -5,8 +5,6 @@ import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.fxdkp.FxdkpDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.vo.fxdkp.FxdkpQueryDto;
 
-import java.util.List;
-
 /**
  * 数字赋能
  *

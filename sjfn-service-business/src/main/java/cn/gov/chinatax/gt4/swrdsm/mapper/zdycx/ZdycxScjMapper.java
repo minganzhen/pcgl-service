@@ -5,9 +5,8 @@ import cn.gov.chinatax.gt4.swrdsm.pojo.domain.zdycx.ZdycxScj;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjQueryDto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Mapper;
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 持久层

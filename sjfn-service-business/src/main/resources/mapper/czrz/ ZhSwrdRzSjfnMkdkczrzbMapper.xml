@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.chinatax.gt4.swrdsm.mapper.czrz.ZhSwrdRzSjfnMkdkczrzbMapper">
+    <resultMap id="BaseResultMap" type="cn.gov.chinatax.gt4.swrdsm.pojo.domain.czrz.ZhSwrdRzSjfnMkdkczrzb">
+        <result column="BTMC" property="btmc" />
+        <result column="CZSJ" property="czsj" />
+        <result column="GNBS" property="gnbs" />
+        <result column="LRRQ" property="lrrq" />
+        <result column="LRRSFID" property="lrrsfid" />
+        <result column="MKDKCZCSZJUUID" property="mkdkczcszjuuid" />
+        <result column="SJCSDQ" property="sjcsdq" />
+        <result column="SJGSDQ" property="sjgsdq" />
+        <result column="SJTB_SJ" property="sjtbSj" />
+        <result column="XGRQ" property="xgrq" />
+        <result column="XGRSFID" property="xgrsfid" />
+        <result column="YWQD_DM" property="ywqdDm" />
+    </resultMap>
+
+    <!-- 表字段 -->
+    <sql id="Base_Column_List">
+        BTMC, CZSJ, GNBS, LRRQ, LRRSFID, MKDKCZCSZJUUID, SJCSDQ, SJGSDQ, SJTB_SJ, XGRQ, XGRSFID, YWQD_DM
+    </sql>
+
+    <select id="getZhSwrdRzSjfnMkdkczrzbs" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.czrz.ZhSwrdRzSjfnMkdkczrzbDto">
+        select
+        t.BTMC,
+        t.CZSJ,
+        t.GNBS,
+        t.LRRQ,
+        t.LRRSFID,
+        t.MKDKCZCSZJUUID,
+        t.SJCSDQ,
+        t.SJGSDQ,
+        t.SJTB_SJ,
+        t.XGRQ,
+        t.XGRSFID,
+        t.YWQD_DM
+        from
+        zh_swrd_rz_sjfn_mkdkczrzb t
+        <where>
+            <if test="form.btmc != null and form.btmc != ''">
+                and t.BTMC = #{form.btmc}
+            </if>
+            <if test="form.czsj != null">
+                and t.CZSJ = #{form.czsj}
+            </if>
+            <if test="form.gnbs != null and form.gnbs != ''">
+                and t.GNBS = #{form.gnbs}
+            </if>
+            <if test="form.lrrq != null">
+                and t.LRRQ = #{form.lrrq}
+            </if>
+            <if test="form.lrrsfid != null and form.lrrsfid != ''">
+                and t.LRRSFID = #{form.lrrsfid}
+            </if>
+            <if test="form.mkdkczcszjuuid != null and form.mkdkczcszjuuid != ''">
+                and t.MKDKCZCSZJUUID = #{form.mkdkczcszjuuid}
+            </if>
+            <if test="form.sjcsdq != null and form.sjcsdq != ''">
+                and t.SJCSDQ = #{form.sjcsdq}
+            </if>
+            <if test="form.sjgsdq != null and form.sjgsdq != ''">
+                and t.SJGSDQ = #{form.sjgsdq}
+            </if>
+            <if test="form.sjtbSj != null">
+                and t.SJTB_SJ = #{form.sjtbSj}
+            </if>
+            <if test="form.xgrq != null">
+                and t.XGRQ = #{form.xgrq}
+            </if>
+            <if test="form.xgrsfid != null and form.xgrsfid != ''">
+                and t.XGRSFID = #{form.xgrsfid}
+            </if>
+            <if test="form.ywqdDm != null and form.ywqdDm != ''">
+                and t.YWQD_DM = #{form.ywqdDm}
+            </if>
+        </where>
+    </select>
+
+    <select id="getZhSwrdRzSjfnMkdkczrzb" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.czrz.ZhSwrdRzSjfnMkdkczrzbDto">
+        select
+        t.BTMC,
+        t.CZSJ,
+        t.GNBS,
+        t.LRRQ,
+        t.LRRSFID,
+        t.MKDKCZCSZJUUID,
+        t.SJCSDQ,
+        t.SJGSDQ,
+        t.SJTB_SJ,
+        t.XGRQ,
+        t.XGRSFID,
+        t.YWQD_DM
+        from
+        zh_swrd_rz_sjfn_mkdkczrzb t
+        <where>
+            t.MKDKCZCSZJUUID = #{id}
+        </where>
+    </select>
+</mapper>

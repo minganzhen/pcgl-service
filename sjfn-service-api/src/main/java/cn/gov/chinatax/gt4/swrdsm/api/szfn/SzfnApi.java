@@ -1,6 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.api.szfn;
 
-import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnZjjgDTO;
+import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnZjjgDto;
 import com.tencent.gov.goff.common.v2.pojo.bean.ServerResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,17 +26,19 @@ import java.util.Map;
 public interface SzfnApi {
 
 
-    @ApiOperation(value = "数字赋能-查询业务办理提醒")
+    @ApiOperation(value = "数字赋能-小贴士")
     @GetMapping("/v1/select-ywbltx")
     public ServerResponse<List<String>> selectYwbltx();
 
-    @ApiOperation(value = "数字赋能-智检结果")
+    @ApiOperation(value = "数字赋能-慧办/小红点")
     @GetMapping("/v1/select-zjjg")
-    public ServerResponse<List<SzfnZjjgDTO>> selectZjjg();
+    public ServerResponse<List<SzfnZjjgDto>> selectZjjg(@RequestParam(value = "llrsfid") String llrsfid);
 
-    @ApiOperation(value = "数字赋能-易查")
+    @ApiOperation(value = "数字赋能-慧看")
     @GetMapping("/v1/select-yc")
     public ServerResponse<Map<String, Object>> selectYc(@RequestParam(value = "shtyxyDm") String shtyxyDm);
 
-
+    @ApiOperation(value = "数字赋能-慧看/慧办按钮显示")
+    @GetMapping("/v2/select-hkandhb")
+    public ServerResponse<Map<String, Boolean>> selectHkAndHb(@RequestParam(value = "ywblmc") String ywblmc);
 }

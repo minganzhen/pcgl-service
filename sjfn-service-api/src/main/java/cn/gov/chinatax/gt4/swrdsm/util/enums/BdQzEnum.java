@@ -2,13 +2,10 @@ package cn.gov.chinatax.gt4.swrdsm.util.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @Copyright：Copyright (c) 2002-2023 Digitalchina CO.,LTD.  All rights reserved.

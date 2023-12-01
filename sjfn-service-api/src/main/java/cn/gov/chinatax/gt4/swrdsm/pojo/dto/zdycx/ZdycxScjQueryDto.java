@@ -3,7 +3,6 @@ package cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx;
 import com.tencent.gov.goff.common.v2.pojo.bean.QueryParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
 import lombok.Data;
 
 import java.util.Date;
@@ -25,21 +24,22 @@ public class ZdycxScjQueryDto extends QueryParam {
     private String scmc;
 
     /**
-     * 录入人代码
+     * 录入日期
      */
-    @ApiModelProperty(value = "录入人代码")
-    private String lrrDm;
+    private Date lrrq;
 
     /**
-     * 录入人税务机关代码
+     * 录入人身份ID
      */
-    @ApiModelProperty(value = "录入人税务机关代码")
-    private String lrrswjgDm;
+    private String lrrsfid;
+    /**
+     * 修改日期
+     */
+    private Date xgrq;
 
     /**
-     * 录入时间
+     * 修改人身份ID
      */
-    @ApiModelProperty(value = "录入时间")
-    private Date lrsj;
+    private String xgrsfid;
 
 }

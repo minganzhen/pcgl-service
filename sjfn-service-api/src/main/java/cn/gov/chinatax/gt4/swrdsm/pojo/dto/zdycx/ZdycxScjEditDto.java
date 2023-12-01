@@ -3,14 +3,13 @@ package cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx;
 import cn.gov.chinatax.gt4.swrdsm.util.core.KeyValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 @Data
 @ApiModel(value = "自定义查询收藏夹新增编辑")

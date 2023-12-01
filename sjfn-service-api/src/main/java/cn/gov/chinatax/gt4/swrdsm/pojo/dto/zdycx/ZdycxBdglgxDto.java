@@ -2,8 +2,9 @@ package cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
 import lombok.Data;
+
+import java.io.Serializable;
 
 
 @Data

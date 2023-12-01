@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gov.chinatax.gt4.swrdsm.mapper.szfn.ZhSwrdCsSjfnYwtxnrcsbMapper">
+    <resultMap id="BaseResultMap" type="cn.gov.chinatax.gt4.swrdsm.pojo.domain.szfn.ZhSwrdCsSjfnYwtxnrcsb">
+        <result column="GNBS" property="gnbs" />
+        <result column="LLRQ" property="llrq" />
+        <result column="LRRSFID" property="lrrsfid" />
+        <result column="SJCSDQ" property="sjcsdq" />
+        <result column="SJGSDQ" property="sjgsdq" />
+        <result column="SJTB_SJ" property="sjtbSj" />
+        <result column="SWJG_DM" property="swjgDm" />
+        <result column="TXBT" property="txbt" />
+        <result column="TXNR" property="txnr" />
+        <result column="XGRQ" property="xgrq" />
+        <result column="XGRSFID" property="xgrsfid" />
+        <result column="YWQD_DM" property="ywqdDm" />
+        <result column="YWTXNRCSZJUUID" property="ywtxnrcszjuuid" />
+    </resultMap>
+
+    <!-- 表字段 -->
+    <sql id="Base_Column_List">
+        GNBS, LLRQ, LRRSFID, SJCSDQ, SJGSDQ, SJTB_SJ, SWJG_DM, TXBT, TXNR, XGRQ, XGRSFID, YWQD_DM, YWTXNRCSZJUUID
+    </sql>
+
+    <select id="getZhSwrdCsSjfnYwtxnrcsbs" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.ZhSwrdCsSjfnYwtxnrcsbDto">
+        select
+        t.GNBS,
+        t.LLRQ,
+        t.LRRSFID,
+        t.SJCSDQ,
+        t.SJGSDQ,
+        t.SJTB_SJ,
+        t.SWJG_DM,
+        t.TXBT,
+        t.TXNR,
+        t.XGRQ,
+        t.XGRSFID,
+        t.YWQD_DM,
+        t.YWTXNRCSZJUUID
+        from
+        zh_swrd_cs_sjfn_ywtxnrcsb t
+        <where>
+            <if test="form.gnbs != null and form.gnbs != ''">
+                and t.GNBS = #{form.gnbs}
+            </if>
+            <if test="form.txbt != null and form.txbt != ''">
+                and t.TXBT = #{form.txbt}
+            </if>
+        </where>
+        limit 1
+    </select>
+
+</mapper>

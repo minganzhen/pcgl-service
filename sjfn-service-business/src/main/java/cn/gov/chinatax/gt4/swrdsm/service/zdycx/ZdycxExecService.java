@@ -15,7 +15,6 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.tencent.gov.goff.common.v2.core.exception.GoffException;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 import static cn.gov.chinatax.gt4.swrdsm.core.util.SqlExecJoinUtil.*;
@@ -62,7 +60,7 @@ public class ZdycxExecService extends ZdycxAbstractExecService {
                 CompletableFuture.runAsync(() -> {
                     switch (item) {
                         case "tableSql":
-                            StringBuilder tableSql = builderTableSql(queryDto); // 1、构建 tableSql
+                            StringBuilder tableSql = builderTableSql(queryDto, true); // 1、构建 tableSql
                             mxcxDto.setTableSql(tableSql.toString());
                             break;
                         case "whereSql":
@@ -104,7 +102,7 @@ public class ZdycxExecService extends ZdycxAbstractExecService {
         ZdycxTjfxDto zdycxTjfxDto = new ZdycxTjfxDto();
 
         CompletableFuture<Void> future1 = CompletableFuture.runAsync(() -> {
-            StringBuilder tableSql = builderTableSql(queryDto); // 1、构建 tableSql
+            StringBuilder tableSql = builderTableSql(queryDto, false); // 1、构建 tableSql
             Set<ZdycxZslDto> tableHeadSet = getZdycxZslDtos(queryDto); // 2、sql字段排序处理
             StringBuilder orderBySql = builderOrderBySql(tableHeadSet); // 2、构建 orderBy
             zdycxTjfxDto.setTableSql(tableSql.toString()).setOrderBySql(orderBySql.toString());
@@ -123,7 +121,7 @@ public class ZdycxExecService extends ZdycxAbstractExecService {
         });
 
         try {
-            CompletableFuture.allOf(future1,future2).get();
+            CompletableFuture.allOf(future1, future2).get();
         } catch (Throwable ex) {
             // 捕获异常抛出处理
             throw new GoffException(Constant.CodeStr.FAILURE, ex.getMessage());
@@ -132,23 +130,24 @@ public class ZdycxExecService extends ZdycxAbstractExecService {
         ArrayList<ZdycxZslDto> tableHeads = Lists.newArrayList(queryDto.getTjfxFzzds());
         String selectJszSql = queryDto.getTjfxJszds().stream().map(tjfxJszd -> {
             ZdycxZslDto jszd = tjfxJszd.getJszd();
+            tableHeads.add(jszd);// 添加上计算字段
             BdTjfxJsEnum anEnum = BdTjfxJsEnum.getEnum(tjfxJszd.getJsfs());
             String tbStringFormat0 = thbMap.get(BQ.getValue());
-            if (tbStringFormat0.isEmpty()) return jszd.getLmDm();
+            if (ObjectUtil.isEmpty(tbStringFormat0)) return jszd.getLmDm();
             StringBuilder selectTbSql0 = anEnum.buildJszd(tbStringFormat0, jszd.getLmDm()).append(AS).append(jszd.getLmDm());
-            tableHeads.add(tjfxJszd.getJszd());// 添加上计算字段
-            for (String dbf : tjfxJszd.getDbfs()) {
-                BdTjfxDbEnum dbEnum = BdTjfxDbEnum.getEnum(dbf);
-                String tjfxDb = ObjectUtil.equals(dbEnum.getValue(), TB.getValue()) ? "_TQ" : "_SQ";
-                ZdycxZslDto zdycxZslDto = BeanUtil.copyProperties(tjfxJszd.getJszd(), ZdycxZslDto.class);
-                zdycxZslDto.setLmKey(zdycxZslDto.getLmKey() + dbEnum.getValue()); // 代码转换不做处理
-                zdycxZslDto.setLmmc(zdycxZslDto.getLmmc() + "-" + dbEnum.getLabel());
-                zdycxZslDto.setTjfxDb(tjfxDb);
-                String tbStringFormat1 = thbMap.get(dbEnum.getValue());
-                StringBuilder selectTbSql1 = anEnum.buildJszd(tbStringFormat1, zdycxZslDto.getLmDm()).append(AS).append(zdycxZslDto.getLmDm() + tjfxDb);
-                selectTbSql0.append(",").append(selectTbSql1);
-                tableHeads.add(zdycxZslDto);// 添加上计算字段
-            }
+            if (ObjectUtil.isNotEmpty(tjfxJszd.getDbfs()))
+                for (String dbf : tjfxJszd.getDbfs()) {
+                    BdTjfxDbEnum dbEnum = BdTjfxDbEnum.getEnum(dbf);
+                    String tjfxDb = ObjectUtil.equals(dbEnum.getValue(), TB.getValue()) ? "_TQ" : "_SQ";
+                    ZdycxZslDto zdycxZslDto = BeanUtil.copyProperties(tjfxJszd.getJszd(), ZdycxZslDto.class);
+                    zdycxZslDto.setLmKey(zdycxZslDto.getLmKey() + dbEnum.getValue()); // 代码转换不做处理
+                    zdycxZslDto.setLmmc(zdycxZslDto.getLmmc() + "-" + dbEnum.getLabel());
+                    zdycxZslDto.setTjfxDb(tjfxDb);
+                    String tbStringFormat1 = thbMap.get(dbEnum.getValue());
+                    StringBuilder selectTbSql1 = anEnum.buildJszd(tbStringFormat1, zdycxZslDto.getLmDm()).append(AS).append(zdycxZslDto.getLmDm() + tjfxDb);
+                    selectTbSql0.append(",").append(selectTbSql1);
+                    tableHeads.add(zdycxZslDto);// 添加上计算字段
+                }
             return selectTbSql0.toString();
         }).collect(Collectors.joining(","));
 
@@ -161,10 +160,11 @@ public class ZdycxExecService extends ZdycxAbstractExecService {
         }).collect(Collectors.joining(","));
         zdycxTjfxDto.setSelectSql(selectSql.toString());
         zdycxTjfxDto.setTjfxSelectSql(tjfxSelectSql);
-        List<Map<String, Object>> dataMap = zdycxExecMapper.selectTjfx(zdycxTjfxDto);
+        Page<Map> page = new Page<>(queryDto.getPageNumber(), queryDto.getPageSize());
+        Page<List<Map<String, Object>>> dataMap = zdycxExecMapper.selectTjfx(page, zdycxTjfxDto);
         Map<String, Object> returnData = new HashMap<>(3);
         returnData.put("tableHead", tableHeads);
-        returnData.put("tableData", dataMap);
+        returnData.put("tableData", PageResult.build(dataMap));
         return returnData;
     }
 }

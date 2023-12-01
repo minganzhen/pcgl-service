@@ -3,11 +3,11 @@ package cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx;
 import cn.gov.chinatax.gt4.swrdsm.util.core.KeyValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -76,25 +76,24 @@ public class ZdycxScjDto implements Serializable {
     @NotEmpty(message = "表单展示列不能为空")
     private Map<String,List<ZdycxZslDto>> bdZsls;
 
-    /* 录入机关*/
-    private String lrrDm;
+    /**
+     * 录入日期
+     */
+    private Date lrrq;
 
-    /* 录入人机关*/
-    private String lrrswjgDm;
+    /**
+     * 录入人身份ID
+     */
+    private String lrrsfid;
+    /**
+     * 修改日期
+     */
+    private Date xgrq;
 
-    /* 录入时间 */
-    private Date lrsj;
-
-
-    /* 录入人人代码*/
-    private String xgrDm;
-
-    /* 修改人机关*/
-    private String xgrswjgDm;
-
-    /* 录入时间 */
-    private Date xgsj;
-
+    /**
+     * 修改人身份ID
+     */
+    private String xgrsfid;
     /**
      * Y/N
      */

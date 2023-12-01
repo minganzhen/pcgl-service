@@ -1,7 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.util.enums;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 /**
