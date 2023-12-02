@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2023-11-22
  */
 @Api(tags = "自定义查询-表单关系接口")
-@FeignClient(value = "swrdsm-service", contextId = "ZdycxBdglgxApi", path = "/sjfn/api/zdycx-bdglgx")
+@FeignClient(value = "sjfn-service", contextId = "ZdycxBdglgxApi", path = "/sjfn/api/zdycx-bdglgx")
 public interface ZdycxBdglgxApi {
 
     /**

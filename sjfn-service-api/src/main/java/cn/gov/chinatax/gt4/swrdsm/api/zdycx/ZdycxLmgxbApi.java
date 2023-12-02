@@ -23,7 +23,7 @@ import java.util.Map;
  * @date 2023-11-22
  */
 @Api(tags = "自定义查询 - 列名接口")
-@FeignClient(value = "swrdsm-service", contextId = "ZdycxLmgxbApi", path = "/sjfn/api/zdycx-lmgxb")
+@FeignClient(value = "sjfn-service", contextId = "ZdycxLmgxbApi", path = "/sjfn/api/zdycx-lmgxb")
 public interface ZdycxLmgxbApi {
 
     /**

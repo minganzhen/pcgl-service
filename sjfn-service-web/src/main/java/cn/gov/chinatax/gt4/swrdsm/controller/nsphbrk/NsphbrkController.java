@@ -26,7 +26,7 @@ public class NsphbrkController {
     @Resource
     private NsphbrkService nsphbrkService;
 
-    @ApiOperation(value = "风险点卡片-查询内控部门发送的风险点卡片")
+    @ApiOperation(value = "风险点卡片-纳税排行榜入库")
     @GetMapping("/v1/select-nsphbrk")
     public ServerResponse<List<NsphbrkDto>> selectNsphbrk(@Valid NsphbrkQueryDto form) {
         return ServerResponse.success(nsphbrkService.selectNsphbrk(form));

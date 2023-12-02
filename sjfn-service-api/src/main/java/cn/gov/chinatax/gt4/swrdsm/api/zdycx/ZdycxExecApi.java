@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import javax.validation.Valid;
 import java.util.Map;
 @Api(tags = "自定义查询 - 执行统计查询接口")
-@FeignClient(value = "swrdsm-service", contextId = "ZdycxExecApi", path = "/sjfn/api/zdycx-exec")
+@FeignClient(value = "sjfn-service", contextId = "ZdycxExecApi", path = "/sjfn/api/zdycx-exec")
 public interface ZdycxExecApi {
 
     /**
