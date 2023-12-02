@@ -41,7 +41,7 @@ public class SzfnController {
         return ServerResponse.success(szfnService.selectYwbltx(gnbs));
     }
 
-    @ApiOperation(value = "数据赋能-慧办/小红点")
+    @ApiOperation(value = "数据赋能-慧办")
     @GetMapping("/v1/select-zjjg")
     public ServerResponse<List<SzfnZjjgDto>> selectZjjg(@RequestParam(value = "llrsfid", required = false) String llrsfid) {
         return ServerResponse.success(szfnService.selectZjjg(llrsfid));
