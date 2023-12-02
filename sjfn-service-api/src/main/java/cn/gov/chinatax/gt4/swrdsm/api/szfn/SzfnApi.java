@@ -25,7 +25,7 @@ import java.util.Map;
  * @Description：数字赋能接口
  */
 @Api(value = "数字赋能")
-@FeignClient(value = "swrdsm-service", contextId = "SzfnApi", path = "/swrdsm-api/szfn")
+@FeignClient(value = "swrdsm-service", contextId = "SzfnApi", path = "/sjfn/api/szfn")
 public interface SzfnApi {
 
 

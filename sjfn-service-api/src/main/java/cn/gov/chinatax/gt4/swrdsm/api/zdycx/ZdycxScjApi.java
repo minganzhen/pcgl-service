@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2023-11-22
  */
 @Api(tags = "自定义查询- 收藏夹接口")
-@FeignClient(value = "swrdsm-service", contextId = "ZdycxScjApi", path = "/swrdsm-api/zdycx-scj")
+@FeignClient(value = "swrdsm-service", contextId = "ZdycxScjApi", path = "/sjfn/api/zdycx-scj")
 public interface ZdycxScjApi {
 
 

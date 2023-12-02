@@ -1,6 +1,6 @@
 spring:
   application:
-    name: swdsm-service
+    name: sjfn-service
 management:
   endpoint:
     health:

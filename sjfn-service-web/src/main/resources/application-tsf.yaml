@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /sjfn-api
+    context-path: /sjfn/api
   max-http-header-size: 20480
 
 spring:
