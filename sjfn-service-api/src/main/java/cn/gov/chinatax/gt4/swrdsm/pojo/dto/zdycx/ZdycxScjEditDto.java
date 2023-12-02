@@ -39,7 +39,7 @@ public class ZdycxScjEditDto implements Serializable {
      * 表单关联关系类型（1: inner、2: left ）
      */
     @ApiModelProperty(value = "表单关联关系类型（1: inner、2: left ）")
-    @NotEmpty(message = "表单关联关系类型不能为空")
+//    @NotEmpty(message = "表单关联关系类型不能为空")
     private String bdGlgxLx;
 
     /**
@@ -59,7 +59,7 @@ public class ZdycxScjEditDto implements Serializable {
      * 表单可选条件值为 lm_key和value的map集合
      */
     @ApiModelProperty(value = "表单可选条件值为 lm_key和value的map集合")
-    @NotEmpty(message = "表单可选条件不能为空")
+//    @NotEmpty(message = "表单可选条件不能为空")
     private Map<String,Object> bdKxtjValue;
 
     /**
