@@ -4,6 +4,7 @@ import cn.gov.chinatax.gt4.swrdsm.core.assertions.AssertUtil;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.service.BaseServiceX;
 import cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxScjMapper;
+import cn.gov.chinatax.gt4.swrdsm.pojo.common.PageResultApi;
 import cn.gov.chinatax.gt4.swrdsm.pojo.domain.zdycx.ZdycxScj;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjEditDto;
@@ -32,11 +33,11 @@ public class ZdycxScjService extends BaseServiceX<ZdycxScjMapper, ZdycxScj> {
      * @param form
      * @return
      */
-    public PageResult<ZdycxScjDto> getZdycxScjs(ZdycxScjQueryDto form) {
+    public PageResultApi<ZdycxScjDto> getZdycxScjs(ZdycxScjQueryDto form) {
         // todo 获取当前登录人的税务人员代码
         Page<ZdycxScjDto> page = new Page<>(form.getPageNumber(), form.getPageSize());
         Page<ZdycxScjDto> resultPage = mapper.getZdycxScjs(page, form);
-        return PageResult.build(resultPage);
+        return PageResult.buildApi(resultPage);
     }
 
     /**

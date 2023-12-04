@@ -85,4 +85,8 @@ public class PageResult<T> implements Serializable {
     public static PageResult build(Page page){
        return new PageResult(page);
     }
+
+    public static PageResultApi buildApi(Page page){
+       return new PageResultApi(page.getRecords(),page.getTotal(),page.getCurrent(),page.getSize());
+    }
 }

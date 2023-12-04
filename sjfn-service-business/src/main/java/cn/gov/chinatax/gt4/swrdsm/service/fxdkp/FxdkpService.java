@@ -2,6 +2,7 @@ package cn.gov.chinatax.gt4.swrdsm.service.fxdkp;
 
 
 import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
+import cn.gov.chinatax.gt4.swrdsm.pojo.common.PageResultApi;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.fxdkp.FxdkpDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.vo.fxdkp.FxdkpQueryDto;
 
@@ -11,6 +12,6 @@ import cn.gov.chinatax.gt4.swrdsm.pojo.vo.fxdkp.FxdkpQueryDto;
  * @author zhaocn
  */
 public interface FxdkpService {
-    PageResult<FxdkpDto> selectFxdkp(FxdkpQueryDto form);
+    PageResultApi<FxdkpDto> selectFxdkp(FxdkpQueryDto form);
 
 }

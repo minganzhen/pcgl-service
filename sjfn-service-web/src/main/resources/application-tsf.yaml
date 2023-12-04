@@ -44,3 +44,11 @@ tct:
     properties:
       task.factory.name: "cn.gov.chinatax.gt4.swrdsm.service.SkzsExecutableTaskFactory"
 
+
+--- #################### 系统配置 ####################
+chinatax:
+  gt4:
+    encryption:
+      enable: true
+      excludeUrls:
+        - /tpass/**

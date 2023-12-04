@@ -2,6 +2,7 @@ package cn.gov.chinatax.gt4.swrdsm.service.fxdkp;
 
 import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
 import cn.gov.chinatax.gt4.swrdsm.mapper.fxdkp.FxdkpMapper;
+import cn.gov.chinatax.gt4.swrdsm.pojo.common.PageResultApi;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.fxdkp.FxdkpDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.vo.fxdkp.FxdkpQueryDto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -20,9 +21,9 @@ public class FxdkpServiceImpl implements FxdkpService {
     private FxdkpMapper mapper;
 
     @Override
-    public PageResult<FxdkpDto> selectFxdkp(FxdkpQueryDto form) {
+    public PageResultApi<FxdkpDto> selectFxdkp(FxdkpQueryDto form) {
         Page<FxdkpDto> page = new Page<>(form.getPageNumber(), form.getPageSize());
         Page<FxdkpDto> resultPage = mapper.selectFxdkp(page, form);
-        return PageResult.build(resultPage);
+        return PageResult.buildApi(resultPage);
     }
 }

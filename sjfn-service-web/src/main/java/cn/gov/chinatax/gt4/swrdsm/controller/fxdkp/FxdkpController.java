@@ -1,6 +1,7 @@
 package cn.gov.chinatax.gt4.swrdsm.controller.fxdkp;
 
 import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
+import cn.gov.chinatax.gt4.swrdsm.pojo.common.PageResultApi;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.fxdkp.FxdkpDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.vo.fxdkp.FxdkpQueryDto;
 import cn.gov.chinatax.gt4.swrdsm.service.fxdkp.FxdkpService;
@@ -28,7 +29,7 @@ public class FxdkpController {
 
     @ApiOperation(value = "风险点卡片-查询内控部门发送的风险点卡片")
     @GetMapping("/v1/select-fxdkp")
-    public ServerResponse<PageResult<FxdkpDto>> selectFxdkp(@Valid FxdkpQueryDto form) {
+    public ServerResponse<PageResultApi<FxdkpDto>> selectFxdkp(@Valid FxdkpQueryDto form) {
         return ServerResponse.success(fxdkpService.selectFxdkp(form));
     }
 

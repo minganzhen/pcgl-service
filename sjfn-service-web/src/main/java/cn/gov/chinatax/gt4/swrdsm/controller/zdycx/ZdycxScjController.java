@@ -1,6 +1,7 @@
 package cn.gov.chinatax.gt4.swrdsm.controller.zdycx;
 
 import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
+import cn.gov.chinatax.gt4.swrdsm.pojo.common.PageResultApi;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjEditDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjQueryDto;
@@ -36,7 +37,7 @@ public class ZdycxScjController {
      */
     @ApiOperation(value = "获取收藏夹列表", response = ZdycxScjDto.class, responseContainer = "List")
     @GetMapping("/v1/select-page")
-    public ServerResponse<PageResult<ZdycxScjDto>> getZdycxScjs(ZdycxScjQueryDto form) {
+    public ServerResponse<PageResultApi<ZdycxScjDto>> getZdycxScjs(ZdycxScjQueryDto form) {
         return ServerResponse.success(zdycxScjService.getZdycxScjs(form));
     }
 
