@@ -18,6 +18,15 @@ spring:
             maxPoolSize: 100
             minIdle: 5
             connection-test-query: select 1
+        hjq: # 汇聚区
+          url: jdbc:vertica://10.0.23.119:5433/scswsbf
+          username: dbadmin
+          password: oracle@123
+          driver-class-name: com.vertica.jdbc.Driver
+          hikari:
+            maxPoolSize: 100
+            minIdle: 5
+            connection-test-query: select 1
   servlet:
     multipart:
       max-file-size: 100MB

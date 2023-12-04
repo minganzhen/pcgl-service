@@ -1,5 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.mapper.zdycx;
 
+import cn.gov.chinatax.gt4.swrdsm.annotation.HjqDS;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxMxcxDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxTjfxDto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -16,6 +17,7 @@ import java.util.Map;
  * @date 2023-11-21
  */
 @Mapper
+@HjqDS
 public interface ZdycxExecMapper {
 
     /**

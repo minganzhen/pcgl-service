@@ -112,14 +112,19 @@
         </dependency>
 
         <dependency>
+            <groupId>com.vertica.jdbc</groupId>
+            <artifactId>vertica-jdbc</artifactId>
+            <version>10.1.1-0</version>
+        </dependency>
+
+        <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>dynamic-datasource-spring-boot</groupId>
-            <artifactId>dynamic-datasource-spring-boot</artifactId>
-            <version>3.4.0-RC2-SNAPSHOT</version>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 
