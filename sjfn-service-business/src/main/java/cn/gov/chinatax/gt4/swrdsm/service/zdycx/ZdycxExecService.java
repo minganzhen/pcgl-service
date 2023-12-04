@@ -1,5 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.service.zdycx;
 
+import cn.gov.chinatax.gt4.swrdsm.annotation.HjqDS;
 import cn.gov.chinatax.gt4.swrdsm.core.assertions.AssertUtil;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
 import cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxExecMapper;
@@ -35,6 +36,7 @@ import static cn.gov.chinatax.gt4.swrdsm.util.enums.BdTjfxDbEnum.TB;
  * @date 2023-11-21
  */
 @Service
+@HjqDS
 public class ZdycxExecService extends ZdycxAbstractExecService {
 
     @Resource

@@ -1,5 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.service.zdycx;
 
+import cn.gov.chinatax.gt4.swrdsm.annotation.HjqDS;
 import cn.gov.chinatax.gt4.swrdsm.core.assertions.AssertUtil;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.service.BaseServiceX;
@@ -25,6 +26,7 @@ import static cn.gov.chinatax.gt4.swrdsm.util.enums.SwrdsmErrorCode.BIZ_ADD_FAIL
  * @date 2023-11-22
  */
 @Service
+@HjqDS
 public class ZdycxScjService extends BaseServiceX<ZdycxScjMapper, ZdycxScj> {
 
     /**

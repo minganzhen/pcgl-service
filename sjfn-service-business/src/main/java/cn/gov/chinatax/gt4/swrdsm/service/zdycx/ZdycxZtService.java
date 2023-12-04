@@ -1,5 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.service.zdycx;
 
+import cn.gov.chinatax.gt4.swrdsm.annotation.HjqDS;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.service.BaseServiceX;
 import cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxZtMapper;
 import cn.gov.chinatax.gt4.swrdsm.pojo.domain.zdycx.ZdycxZt;
@@ -15,6 +16,7 @@ import java.util.List;
  * @date 2023-11-21
  */
 @Service
+@HjqDS
 public class ZdycxZtService extends BaseServiceX<ZdycxZtMapper, ZdycxZt> {
 
     /**

@@ -1,5 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.service.zdycx;
 
+import cn.gov.chinatax.gt4.swrdsm.annotation.HjqDS;
 import cn.gov.chinatax.gt4.swrdsm.core.assertions.AssertUtil;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.service.BaseServiceX;
 import cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxBdglgxMapper;
@@ -18,7 +19,7 @@ import java.util.List;
  * @date 2023-11-22
  */
 @Service
-@DS("master")
+@HjqDS
 public class ZdycxBdglgxService extends BaseServiceX<ZdycxBdglgxMapper, ZdycxBdglgx> {
 
     /**

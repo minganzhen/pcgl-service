@@ -1,5 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.service.zdycx;
 
+import cn.gov.chinatax.gt4.swrdsm.annotation.HjqDS;
 import cn.gov.chinatax.gt4.swrdsm.core.assertions.AssertUtil;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.query.LambdaQueryWrapperX;
 import cn.gov.chinatax.gt4.swrdsm.core.util.JsonUtil;
@@ -39,6 +40,7 @@ import static cn.gov.chinatax.gt4.swrdsm.core.util.SqlExecJoinUtil.*;
  * @Compiler：1.8
  * @Description：ZdycxAbstractExecService 抽象类
  */
+@HjqDS
 public abstract class ZdycxAbstractExecService implements ZdycxInterFaceExecService {
     protected static Map<String, List<BdQzEnum>> bdQzMap = new HashMap<>();
     protected static final List bqQzList = Lists.newArrayList("rqfw", "szfw");
@@ -52,6 +54,7 @@ public abstract class ZdycxAbstractExecService implements ZdycxInterFaceExecServ
 
     // 初始化缓存
     @PostConstruct
+    @HjqDS
     public void initBdQzEnum() {
         List<ZdycxLmgxb> zdycxLmgxbs = zdycxLmgxbMapper.selectList(
                 new LambdaQueryWrapperX<ZdycxLmgxb>().in(ZdycxLmgxb::getTjlbz, Lists.newArrayList("0", "1", "2"))

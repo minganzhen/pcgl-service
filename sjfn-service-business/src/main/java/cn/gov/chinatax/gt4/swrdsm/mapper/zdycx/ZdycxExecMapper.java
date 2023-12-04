@@ -17,7 +17,6 @@ import java.util.Map;
  * @date 2023-11-21
  */
 @Mapper
-@HjqDS
 public interface ZdycxExecMapper {
 
     /**

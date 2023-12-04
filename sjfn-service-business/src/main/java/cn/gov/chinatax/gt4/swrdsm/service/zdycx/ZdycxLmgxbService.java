@@ -1,5 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.service.zdycx;
 
+import cn.gov.chinatax.gt4.swrdsm.annotation.HjqDS;
 import cn.gov.chinatax.gt4.swrdsm.core.assertions.AssertUtil;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.service.BaseServiceX;
 import cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxLmgxbMapper;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @Slf4j
+@HjqDS
 public class ZdycxLmgxbService extends BaseServiceX<ZdycxLmgxbMapper, ZdycxLmgxb> {
 
     private static final List<BdTjfxDbEnum> TB_LIST = Lists.newArrayList(BdTjfxDbEnum.TB);
