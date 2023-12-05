@@ -7,6 +7,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -28,8 +30,8 @@ public interface ZdycxBdglgxApi {
      * @return
      */
     @ApiOperation(value = "获取表单关系")
-    @GetMapping("/v1/select-gx")
-    public ServerResponse<List<ZdycxBdglgxDto>> getZdycxBdglgxs(@Valid ZdycxBdglgxQueryDto form);
+    @PostMapping("/v1/select-gx")
+    public ServerResponse<List<ZdycxBdglgxDto>> getZdycxBdglgxs(@Valid @RequestBody ZdycxBdglgxQueryDto form);
 
     /**
      * 获取主题之间是否存在关联关系
@@ -37,7 +39,7 @@ public interface ZdycxBdglgxApi {
      * @return
      */
     @ApiOperation(value = "获取主题之间是否存在关联关系")
-    @GetMapping("/v1/select-sfczgx")
-    public ServerResponse<Boolean> selectSfczgx(@Valid ZdycxBdglgxQueryDto form);
+    @PostMapping("/v1/select-sfczgx")
+    public ServerResponse<Boolean> selectSfczgx(@Valid @RequestBody ZdycxBdglgxQueryDto form);
 
 }

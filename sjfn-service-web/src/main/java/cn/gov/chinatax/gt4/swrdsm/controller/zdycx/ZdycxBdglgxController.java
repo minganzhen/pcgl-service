@@ -7,9 +7,7 @@ import com.tencent.gov.goff.common.v2.pojo.bean.ServerResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -35,8 +33,8 @@ public class ZdycxBdglgxController {
      * @return
      */
     @ApiOperation(value = "获取表单关系")
-    @GetMapping("/v1/select-gx")
-    public ServerResponse<List<ZdycxBdglgxDto>> getZdycxBdglgxs(@Valid ZdycxBdglgxQueryDto form) {
+    @PostMapping("/v1/select-gx")
+    public ServerResponse<List<ZdycxBdglgxDto>> getZdycxBdglgxs(@Valid @RequestBody ZdycxBdglgxQueryDto form) {
         return ServerResponse.success(zdycxBdglgxService.getZdycxBdglgxs(form));
     }
 
@@ -46,8 +44,8 @@ public class ZdycxBdglgxController {
      * @return
      */
     @ApiOperation(value = "获取主题之间是否存在关联关系")
-    @GetMapping("/v1/select-sfczgx")
-    public ServerResponse<Boolean> selectSfczgx(@Valid ZdycxBdglgxQueryDto form) {
+    @PostMapping("/v1/select-sfczgx")
+    public ServerResponse<Boolean> selectSfczgx(@Valid @RequestBody ZdycxBdglgxQueryDto form) {
         return ServerResponse.success(zdycxBdglgxService.selectSfczgx(form));
     }
     

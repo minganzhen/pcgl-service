@@ -6,9 +6,7 @@ import cn.gov.chinatax.gt4.swrdsm.service.nsphbrk.NsphbrkService;
 import com.tencent.gov.goff.common.v2.pojo.bean.ServerResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -27,8 +25,8 @@ public class NsphbrkController {
     private NsphbrkService nsphbrkService;
 
     @ApiOperation(value = "风险点卡片-纳税排行榜入库")
-    @GetMapping("/v1/select-nsphbrk")
-    public ServerResponse<List<NsphbrkDto>> selectNsphbrk(@Valid NsphbrkQueryDto form) {
+    @PostMapping("/v1/select-nsphbrk")
+    public ServerResponse<List<NsphbrkDto>> selectNsphbrk(@Valid @RequestBody NsphbrkQueryDto form) {
         return ServerResponse.success(nsphbrkService.selectNsphbrk(form));
     }
 

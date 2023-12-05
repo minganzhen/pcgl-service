@@ -8,6 +8,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 
@@ -21,8 +23,8 @@ public interface FxdkpApi {
 
 
     @ApiOperation(value = "风险点卡片-查询内控部门发送的风险点卡片")
-    @GetMapping("/v1/select-fxdkp")
-    public ServerResponse<PageResultApi<FxdkpDto>> selectFxdkp(@Valid FxdkpQueryDto form);
+    @PostMapping("/v1/select-fxdkp")
+    public ServerResponse<PageResultApi<FxdkpDto>> selectFxdkp(@Valid @RequestBody FxdkpQueryDto form);
 
 
 }

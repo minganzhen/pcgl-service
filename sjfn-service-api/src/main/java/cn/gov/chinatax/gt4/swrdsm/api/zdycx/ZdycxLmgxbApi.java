@@ -33,8 +33,8 @@ public interface ZdycxLmgxbApi {
      * @return
      */
     @ApiOperation(value = "获取列名列表")
-    @GetMapping("/v1/select-lm")
-    public ServerResponse<Map<String, List<ZdycxZslDto>>> selectLm(@Valid ZdycxLmgxbQueryDto form);
+    @PostMapping("/v1/select-lm")
+    public ServerResponse<Map<String, List<ZdycxZslDto>>> selectLm(@Valid @RequestBody ZdycxLmgxbQueryDto form);
 
     /**
      * 获取选中的条件
@@ -43,8 +43,8 @@ public interface ZdycxLmgxbApi {
      * @return
      */
     @ApiOperation(value = "获取选中的条件")
-    @GetMapping("/v1/select-tj")
-    public ServerResponse<Map<String, List<ZdycxTjXsDto>>> selectTj(@Valid ZdycxLmgxbQueryDto form);
+    @PostMapping("/v1/select-tj")
+    public ServerResponse<Map<String, List<ZdycxTjXsDto>>> selectTj(@Valid @RequestBody ZdycxLmgxbQueryDto form);
 
     /**
      *  获取分组字段、统计字段、可以选择的对比方式
@@ -54,5 +54,5 @@ public interface ZdycxLmgxbApi {
      */
     @ApiOperation(value = "获取分组字段、统计字段")
     @PostMapping("/v1/select-tjfx")
-    public ServerResponse<Map<String, Object>> selectTjfx(@RequestBody ZdycxTjFxBeforeQueryDto queryDto);
+    public ServerResponse<Map<String, Object>> selectTjfx(@Valid @RequestBody ZdycxTjFxBeforeQueryDto queryDto);
 }

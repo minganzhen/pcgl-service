@@ -31,8 +31,8 @@ public interface ZdycxScjApi {
      * @return
      */
     @ApiOperation(value = "获取收藏夹列表", response = ZdycxScjDto.class, responseContainer = "List")
-    @GetMapping("/v1/select-page")
-    public ServerResponse<PageResultApi<ZdycxScjDto>> getZdycxScjs(ZdycxScjQueryDto form);
+    @PostMapping("/v1/select-page")
+    public ServerResponse<PageResultApi<ZdycxScjDto>> getZdycxScjs( @RequestBody ZdycxScjQueryDto form);
 
     /**
      * 获取

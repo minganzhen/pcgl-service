@@ -7,6 +7,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -21,8 +23,8 @@ public interface NsphbrkApi {
 
 
     @ApiOperation(value = "风险点卡片-纳税排行榜入库")
-    @GetMapping("/v1/select-nsphbrk")
-    public ServerResponse<List<NsphbrkDto>> selectNsphbrk(@Valid NsphbrkQueryDto form);
+    @PostMapping("/v1/select-nsphbrk")
+    public ServerResponse<List<NsphbrkDto>> selectNsphbrk(@Valid @RequestBody NsphbrkQueryDto form);
 
 
 }
