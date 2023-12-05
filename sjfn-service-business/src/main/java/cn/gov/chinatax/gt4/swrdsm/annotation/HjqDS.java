@@ -18,7 +18,7 @@ import java.lang.annotation.*;
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@DS("hjq")
+@DS("hjqDataSource")
 public @interface HjqDS {
 
 
