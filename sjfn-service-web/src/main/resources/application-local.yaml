@@ -77,7 +77,7 @@ goff-logs:
 chinatax:
   gt4:
     encryption:
-      enable: false
+      enable: true
       excludeUrls:
         - /tpass/**
       interceptUrls:
