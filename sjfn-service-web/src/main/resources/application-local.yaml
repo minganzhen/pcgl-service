@@ -80,7 +80,15 @@ chinatax:
       enable: false
       excludeUrls:
         - /tpass/**
-
+      interceptUrls:
+        - /sjfn/api/fxdkp/**
+        - /sjfn/api/nsphbrk/**
+        - /sjfn/api/szfn/**
+        - /sjfn/api/zdycx-bdglgx/**
+        - /sjfn/api/zdycx-exec/**
+        - /sjfn/api/zdycx-lmgxb/**
+        - /sjfn/api/zdycx-scj/**
+        - /sjfn/api/zdycx-zt/**
 #集成环境总局  添加日志生产者配置
 #log.operation:
 #  applicationName: swrdsm-service
