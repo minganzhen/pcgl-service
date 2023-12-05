@@ -1,6 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.config.web;
 
-import cn.gov.chinatax.gt4.swrdsm.core.filter.EncryptFilter;
+import cn.gov.chinatax.gt4.swrdsm.core.filter.EncryptFilter0;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,10 +35,10 @@ public class FilterConfig {
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Bean
     @ConditionalOnProperty(value = "chinatax.gt4.encryption.enable", havingValue = "true")
-    public FilterRegistrationBean<EncryptFilter> encryptFilter(EncryProperties properties, PathMatcher pathMatcher) {
+    public FilterRegistrationBean<EncryptFilter0> encryptFilter(EncryProperties properties, PathMatcher pathMatcher) {
         log.info("[过滤器encryptFilter]初始化启动成功");
-        log.info("[过滤器encryptFilter] excludeUrls={}", properties.getExcludeUrls());
-        return createFilterBean(new EncryptFilter(properties, pathMatcher, apiPrefix), Integer.MIN_VALUE + 100); // 拦截放到最外面
+        log.info("[过滤器encryptFilter] interceptUrls={}", properties.getInterceptUrls());
+        return createFilterBean(new EncryptFilter0(properties, pathMatcher, apiPrefix), Integer.MIN_VALUE + 100); // 拦截放到最外面
     }
 
 

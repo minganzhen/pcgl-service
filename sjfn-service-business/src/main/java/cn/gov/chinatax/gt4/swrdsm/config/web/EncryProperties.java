@@ -24,4 +24,6 @@ public class EncryProperties {
      */
     private List<String> excludeUrls = Collections.emptyList();
 
+    private List<String> interceptUrls = Collections.emptyList();
+
 }
