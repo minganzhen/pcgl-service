@@ -36,7 +36,7 @@
         t.XGRSFID,
         t.YWQD_DM
         from
-        zh_swrd_rz_sjfn_mkdkczrzb t
+        CS_ZH_SJFN_MKDKCZRZB t
         <where>
             <if test="form.btmc != null and form.btmc != ''">
                 and t.BTMC = #{form.btmc}
@@ -92,7 +92,7 @@
         t.XGRSFID,
         t.YWQD_DM
         from
-        zh_swrd_rz_sjfn_mkdkczrzb t
+        CS_ZH_SJFN_MKDKCZRZB t
         <where>
             t.MKDKCZCSZJUUID = #{id}
         </where>

@@ -3,14 +3,14 @@
 <mapper namespace="cn.gov.chinatax.gt4.swrdsm.mapper.szfn.ZhSwrdCsSjfnYwtxnrcsbMapper">
     <resultMap id="BaseResultMap" type="cn.gov.chinatax.gt4.swrdsm.pojo.domain.szfn.ZhSwrdCsSjfnYwtxnrcsb">
         <result column="GNBS" property="gnbs" />
-        <result column="LLRQ" property="llrq" />
+        <result column="LRRQ" property="lrrq" />
         <result column="LRRSFID" property="lrrsfid" />
         <result column="SJCSDQ" property="sjcsdq" />
         <result column="SJGSDQ" property="sjgsdq" />
         <result column="SJTB_SJ" property="sjtbSj" />
         <result column="SWJG_DM" property="swjgDm" />
         <result column="TXBT" property="txbt" />
-        <result column="TXNR" property="txnr" />
+        <result column="HSTXNR" property="hstxnr" />
         <result column="XGRQ" property="xgrq" />
         <result column="XGRSFID" property="xgrsfid" />
         <result column="YWQD_DM" property="ywqdDm" />
@@ -19,26 +19,26 @@
 
     <!-- 表字段 -->
     <sql id="Base_Column_List">
-        GNBS, LLRQ, LRRSFID, SJCSDQ, SJGSDQ, SJTB_SJ, SWJG_DM, TXBT, TXNR, XGRQ, XGRSFID, YWQD_DM, YWTXNRCSZJUUID
+        GNBS, LRRQ, LRRSFID, SJCSDQ, SJGSDQ, SJTB_SJ, SWJG_DM, TXBT, HSTXNR, XGRQ, XGRSFID, YWQD_DM, YWTXNRCSZJUUID
     </sql>
 
     <select id="getZhSwrdCsSjfnYwtxnrcsbs" resultType="cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.ZhSwrdCsSjfnYwtxnrcsbDto">
         select
         t.GNBS,
-        t.LLRQ,
+        t.LRRQ,
         t.LRRSFID,
         t.SJCSDQ,
         t.SJGSDQ,
         t.SJTB_SJ,
         t.SWJG_DM,
         t.TXBT,
-        t.TXNR,
+        t.HSTXNR as TXNR,
         t.XGRQ,
         t.XGRSFID,
         t.YWQD_DM,
         t.YWTXNRCSZJUUID
         from
-        zh_swrd_cs_sjfn_ywtxnrcsb t
+        CS_ZH_SJFN_YWTXNRCSB t
         <where>
             <if test="form.gnbs != null and form.gnbs != ''">
                 and t.GNBS = #{form.gnbs}

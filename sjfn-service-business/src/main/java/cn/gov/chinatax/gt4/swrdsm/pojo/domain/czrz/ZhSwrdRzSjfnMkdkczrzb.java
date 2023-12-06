@@ -16,7 +16,7 @@ import java.util.Date;
  * @date 2023-12-01
  */
 @Data
-@TableName(value = "zh_swrd_rz_sjfn_mkdkczrzb")
+@TableName(value = "CS_ZH_SJFN_MKDKCZRZB")
 public class ZhSwrdRzSjfnMkdkczrzb extends BaseEntity {
 
     /**

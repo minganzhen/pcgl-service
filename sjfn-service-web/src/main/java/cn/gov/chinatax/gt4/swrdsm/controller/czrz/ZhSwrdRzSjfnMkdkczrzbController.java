@@ -32,7 +32,7 @@ public class ZhSwrdRzSjfnMkdkczrzbController {
      * @return
      */
     @ApiOperation(value = "获取列表", response = ZhSwrdRzSjfnMkdkczrzbDto.class, responseContainer = "List")
-    @GetMapping
+    @GetMapping("/v1/select-page")
     public List<ZhSwrdRzSjfnMkdkczrzbDto> getZhSwrdRzSjfnMkdkczrzbs(ZhSwrdRzSjfnMkdkczrzbQueryDto form) {
         return zhSwrdRzSjfnMkdkczrzbService.getZhSwrdRzSjfnMkdkczrzbs(form);
     }
@@ -44,7 +44,7 @@ public class ZhSwrdRzSjfnMkdkczrzbController {
      * @return
      */
     @ApiOperation(value = "获取", response = ZhSwrdRzSjfnMkdkczrzbDto.class)
-    @GetMapping("/detail")
+    @GetMapping("/v1/detail")
     public ZhSwrdRzSjfnMkdkczrzbDto getZhSwrdRzSjfnMkdkczrzb(String id) {
         return zhSwrdRzSjfnMkdkczrzbService.getZhSwrdRzSjfnMkdkczrzb(id);
     }
@@ -56,32 +56,8 @@ public class ZhSwrdRzSjfnMkdkczrzbController {
      * @return
      */
     @ApiOperation(value = "新增", response = String.class)
-    @PostMapping
+    @PostMapping("/v1/add")
     public String addZhSwrdRzSjfnMkdkczrzb(@RequestBody ZhSwrdRzSjfnMkdkczrzbEditDto edit) {
         return zhSwrdRzSjfnMkdkczrzbService.addZhSwrdRzSjfnMkdkczrzb(edit);
-    }
-
-    /**
-     * 编辑
-     *
-     * @param edit
-     * @return
-     */
-    @ApiOperation(value = "编辑", response = Boolean.class)
-    @PutMapping
-    public Boolean editZhSwrdRzSjfnMkdkczrzb(@RequestBody ZhSwrdRzSjfnMkdkczrzbEditDto edit) {
-        return zhSwrdRzSjfnMkdkczrzbService.editZhSwrdRzSjfnMkdkczrzb(edit);
-    }
-
-    /**
-     * 根据主键集合删除
-     *
-     * @param form
-     * @return
-     */
-    @ApiOperation(value = "根据主键集合删除", response = Boolean.class)
-    @DeleteMapping("/ids")
-    public Boolean deleteZhSwrdRzSjfnMkdkczrzbs(@RequestBody ZhSwrdRzSjfnMkdkczrzbQueryDto form) {
-        return zhSwrdRzSjfnMkdkczrzbService.deleteZhSwrdRzSjfnMkdkczrzbs(form);
     }
 }

@@ -64,38 +64,4 @@ public class ZhSwrdRzSjfnMkdkczrzbService extends BaseServiceX<ZhSwrdRzSjfnMkdkc
 
         return result;
     }
-
-    /**
-     * 编辑
-     *
-     * @param edit
-     * @return
-     */
-    @Transactional(rollbackFor = Exception.class)
-    public Boolean editZhSwrdRzSjfnMkdkczrzb(ZhSwrdRzSjfnMkdkczrzbEditDto edit) {
-        Boolean result = false;
-        ZhSwrdRzSjfnMkdkczrzb zhSwrdRzSjfnMkdkczrzb = BeanUtil.copyProperties(edit, ZhSwrdRzSjfnMkdkczrzb.class);
-        int row = updateById(zhSwrdRzSjfnMkdkczrzb);
-        result = row > 0 ? true : false;
-
-        return result;
-    }
-    
-    /**
-     * 根据主键集合删除
-     *
-     * @param form
-     * @return
-     */
-    @Transactional(rollbackFor = Exception.class)
-    public Boolean deleteZhSwrdRzSjfnMkdkczrzbs(ZhSwrdRzSjfnMkdkczrzbQueryDto form) {
-        Boolean result = false;
-
-        String[] ids = form.getIds().split(",");
-        int row = deleteByIds(Arrays.asList(ids));
-        result = row > 0 ? true : false;
-
-        return result;
-    }
-
 }

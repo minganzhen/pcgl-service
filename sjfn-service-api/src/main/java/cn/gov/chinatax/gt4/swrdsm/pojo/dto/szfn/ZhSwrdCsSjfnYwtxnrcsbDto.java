@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@ApiModel(value = "")
+@ApiModel(value = "业务提醒标识")
 @NoArgsConstructor
 @AllArgsConstructor
 public class ZhSwrdCsSjfnYwtxnrcsbDto implements Serializable {
@@ -26,7 +26,7 @@ public class ZhSwrdCsSjfnYwtxnrcsbDto implements Serializable {
      */
     @ApiModelProperty(value = "录入日期")
     @JsonFormat(pattern = "")
-    private Date llrq;
+    private Date lrrq;
 
     /**
      * 录入人身份ID

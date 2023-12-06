@@ -12,7 +12,7 @@ import lombok.Data;
  * @date 2023-12-01
  */
 @Data
-@TableName(value = "zh_swrd_cs_sjfn_ywtxnrcsb")
+@TableName(value = "CS_ZH_SJFN_YWTXNRCSB")
 public class ZhSwrdCsSjfnYwtxnrcsb extends BaseEntity {
 
     /**
@@ -36,6 +36,11 @@ public class ZhSwrdCsSjfnYwtxnrcsb extends BaseEntity {
     /**
      * 提醒内容
      */
-    @TableField(value = "TXNR")
-    private String txnr;
+    @TableField(value = "HSTXNR")
+    private String hstxnr;
+    /**
+     * 功能标识
+     */
+    @TableField(value = "gnbs")
+    private String gnbs;
 }
