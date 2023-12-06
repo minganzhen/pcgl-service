@@ -1,7 +1,10 @@
 package cn.gov.chinatax.gt4.swrdsm.service.szfn;
 
 import cn.gov.chinatax.gt4.swrdsm.core.assertions.AssertUtil;
+import cn.gov.chinatax.gt4.swrdsm.pojo.dto.czrz.ZhSwrdRzSjfnMkdkczrzbDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.*;
+import cn.gov.chinatax.gt4.swrdsm.service.czrz.ZhSwrdRzSjfnMkdkczrzbService;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,9 @@ public class SzfnService {
 
     @Resource
     private ZhSwrdCsSjfnYwtxnrcsbService ywtxnrcsbService;
+    @Resource
+    private ZhSwrdRzSjfnMkdkczrzbService sjfnMkdkczrzbService;
+
     private static final List<String> HK_PZX = Lists.newArrayList("注销税务登记", "退抵税费审批", "税（费）种认定");
     private static final List<String> HB_PZX = Lists.newArrayList("变更税务登记"
             , "修改设立税务登记信息（补偿）", "纳税人（扣缴义务人）身份信息报告", "工商部门登记信息查询确认", "个体工商户信息确认", "一照一码户信息确认");
@@ -57,9 +63,20 @@ public class SzfnService {
     }
 
 
-    public List<SzfnZjjgDto> selectZjjg(String llrsfid) {
+    public List<SzfnZjjgDto> selectZjjg(String lrrsfid) {
 
         // todo 待开发 调用税支撑的微服务网关
+
+        // 查询到对饮
+        ZhSwrdRzSjfnMkdkczrzbDto zhSwrdRzSjfnMkdkczrzb = sjfnMkdkczrzbService.getZhSwrdRzSjfnMkdkczrzb(lrrsfid);
+        String sjq = ObjectUtil.isEmpty(zhSwrdRzSjfnMkdkczrzb) ? DateUtil.format(DateUtil.date(),"yyyy-MM-dd")
+                : DateUtil.format(zhSwrdRzSjfnMkdkczrzb.getCzsj(),"yyyy-MM-dd");
+        String sjz = DateUtil.format(DateUtil.date(),"yyyy-MM-dd");
+        String qxSwjgDm = ""; // todo 未开发
+        String czysfid = lrrsfid; // todo 未开发
+
+        // 发送税支撑请求
+
         //  1、通过日志表拿到上次操作的最后时间，将时间起和时间止传递过去
         SzfnZjjgDto dto = new SzfnZjjgDto();
         dto.setSxmc("税 (费) 种认定");

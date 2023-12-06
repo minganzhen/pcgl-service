@@ -29,8 +29,8 @@ public interface ZhSwrdRzSjfnMkdkczrzbMapper extends BaseMapperX<ZhSwrdRzSjfnMkd
     /**
      * 获取
      *
-     * @param id
+     * @param lrrsfid
      * @return
      */
-    ZhSwrdRzSjfnMkdkczrzbDto getZhSwrdRzSjfnMkdkczrzb(@Param("id") String id);
+    ZhSwrdRzSjfnMkdkczrzbDto getZhSwrdRzSjfnMkdkczrzb(@Param("lrrsfid") String lrrsfid);
 }

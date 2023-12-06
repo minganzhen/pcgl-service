@@ -38,18 +38,6 @@ public class ZhSwrdRzSjfnMkdkczrzbController {
     }
 
     /**
-     * 获取
-     *
-     * @param id
-     * @return
-     */
-    @ApiOperation(value = "获取", response = ZhSwrdRzSjfnMkdkczrzbDto.class)
-    @GetMapping("/v1/detail")
-    public ZhSwrdRzSjfnMkdkczrzbDto getZhSwrdRzSjfnMkdkczrzb(String id) {
-        return zhSwrdRzSjfnMkdkczrzbService.getZhSwrdRzSjfnMkdkczrzb(id);
-    }
-
-    /**
      * 新增
      *
      * @param edit

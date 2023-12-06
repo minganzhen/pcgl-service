@@ -94,7 +94,9 @@
         from
         CS_ZH_SJFN_MKDKCZRZB t
         <where>
-            t.MKDKCZCSZJUUID = #{id}
+            t.LRRSFID = #{lrrsfid}
+        order by t.CZSJ desc
+        limit 1
         </where>
     </select>
 </mapper>

@@ -7,6 +7,7 @@ import cn.gov.chinatax.gt4.swrdsm.pojo.dto.czrz.ZhSwrdRzSjfnMkdkczrzbDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.czrz.ZhSwrdRzSjfnMkdkczrzbEditDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.czrz.ZhSwrdRzSjfnMkdkczrzbQueryDto;
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.date.DateUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,17 +34,15 @@ public class ZhSwrdRzSjfnMkdkczrzbService extends BaseServiceX<ZhSwrdRzSjfnMkdkc
         zhSwrdRzSjfnMkdkczrzbs = mapper.getZhSwrdRzSjfnMkdkczrzbs(form);
         return zhSwrdRzSjfnMkdkczrzbs;
     }
-    
+
     /**
-     * 获取
+     * 根据录入人身份id 获取日志信息
      *
-     * @param id
+     * @param lrrsfid
      * @return
      */
-    public ZhSwrdRzSjfnMkdkczrzbDto getZhSwrdRzSjfnMkdkczrzb(String id) {
-        ZhSwrdRzSjfnMkdkczrzbDto zhSwrdRzSjfnMkdkczrzb = null;
-        zhSwrdRzSjfnMkdkczrzb = mapper.getZhSwrdRzSjfnMkdkczrzb(id);
-        return zhSwrdRzSjfnMkdkczrzb;
+    public ZhSwrdRzSjfnMkdkczrzbDto getZhSwrdRzSjfnMkdkczrzb(String lrrsfid) {
+        return mapper.getZhSwrdRzSjfnMkdkczrzb(lrrsfid);
     }
 
     /**
@@ -55,13 +54,12 @@ public class ZhSwrdRzSjfnMkdkczrzbService extends BaseServiceX<ZhSwrdRzSjfnMkdkc
     @Transactional(rollbackFor = Exception.class)
     public String addZhSwrdRzSjfnMkdkczrzb(ZhSwrdRzSjfnMkdkczrzbEditDto edit) {
         String result = null;
-
+        edit.setCzsj(DateUtil.date());
         ZhSwrdRzSjfnMkdkczrzb zhSwrdRzSjfnMkdkczrzb = BeanUtil.copyProperties(edit, ZhSwrdRzSjfnMkdkczrzb.class);
         int row = insert(zhSwrdRzSjfnMkdkczrzb);
         if (row > 0) {
             result = zhSwrdRzSjfnMkdkczrzb.getMkdkczcszjuuid();
         }
-
         return result;
     }
 }
