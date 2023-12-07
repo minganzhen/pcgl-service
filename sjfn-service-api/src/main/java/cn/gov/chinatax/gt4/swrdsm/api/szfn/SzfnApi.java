@@ -1,6 +1,5 @@
 package cn.gov.chinatax.gt4.swrdsm.api.szfn;
 
-import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnHkHbPzDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnHkHbPzDtoV3;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.SzfnZjjgDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.szfn.ZhSwrdCsSjfnYwtxnrcsbDto;

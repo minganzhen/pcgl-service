@@ -25,7 +25,7 @@ public class SqlExecJoinUtil {
     public static final String DYH = "'";
     public static final String DOU_HAO = ",";
 
-    public static final String CONCAT_THB = " CASE WHEN %s = 0 THEN 0 ELSE CONCAT(ROUND( %s / %s * 100, 2), '%s') END %s";
+    public static final String CONCAT_THB = " CASE WHEN %s = 0 THEN '0' ELSE CONCAT(ROUND( %s / %s * 100, 2), '%s') END %s";
     public static final String TO_CHAR_RQ = "TO_CHAR( %s , 'yyyy-mm-dd') ";
 
     public static final String Q = "q";
