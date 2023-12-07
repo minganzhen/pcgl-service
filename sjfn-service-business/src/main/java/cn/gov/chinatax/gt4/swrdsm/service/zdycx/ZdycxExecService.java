@@ -107,8 +107,8 @@ public class ZdycxExecService extends ZdycxAbstractExecService {
         CompletableFuture<Void> future1 = CompletableFuture.runAsync(() -> {
             StringBuilder tableSql = builderTableSql(queryDto, false); // 1、构建 tableSql
             Set<ZdycxZslDto> tableHeadSet = getZdycxZslDtos(queryDto); // 2、sql字段排序处理
-            StringBuilder orderBySql = builderOrderBySql(tableHeadSet); // 2、构建 orderBy
-            zdycxTjfxDto.setTableSql(tableSql.toString()).setOrderBySql(orderBySql.toString());
+//            StringBuilder orderBySql = builderOrderBySql(tableHeadSet); // 2、构建 orderBy
+//            zdycxTjfxDto.setTableSql(tableSql.toString()).setOrderBySql(orderBySql.toString());
         }, tjfxExecutor).exceptionally(throwable -> {
             throw new GoffException(Constant.CodeStr.FAILURE, throwable.getMessage());
         });
