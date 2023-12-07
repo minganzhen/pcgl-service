@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 持久层
  *
@@ -23,7 +25,7 @@ public interface ZdycxScjMapper extends BaseMapperX<ZdycxScj> {
      * @param form
      * @return
      */
-    Page<ZdycxScjDto> getZdycxScjs(Page<ZdycxScjDto> page, @Param("form") ZdycxScjQueryDto form);
+    List<ZdycxScjDto> getZdycxScjs(@Param("form") ZdycxScjQueryDto form);
     
     /**
      * 获取

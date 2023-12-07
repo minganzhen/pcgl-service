@@ -3,6 +3,7 @@ package cn.gov.chinatax.gt4.swrdsm.service.zdycx;
 import cn.gov.chinatax.gt4.swrdsm.annotation.HjqDS;
 import cn.gov.chinatax.gt4.swrdsm.core.assertions.AssertUtil;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
+import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PaginationContext;
 import cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxExecMapper;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxMxcxDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxTjfxDto;
@@ -82,8 +83,8 @@ public class ZdycxExecService extends ZdycxAbstractExecService {
                 })
         ).map(CompletableFuture::join).collect(Collectors.toList());
         if (ObjectUtil.isNotEmpty(errorMsg)) AssertUtil.isTrue(false, errorMsg.toString()); // 异常信息抛出
-        Page<Map> page = new Page<>(queryDto.getPageNumber(), queryDto.getPageSize());
-        Page<List<Map<String, Object>>> listPage = zdycxExecMapper.selectMxcx(page, mxcxDto);
+        PaginationContext.trySetPagable(queryDto);
+        List<Map<String, Object>> listPage = zdycxExecMapper.selectMxcx(mxcxDto);
         // 返回表头和 maps数据
         Map<String, Object> returnData = new HashMap<>(3);
         returnData.put("tableHead", tableHeadSet);
@@ -162,8 +163,8 @@ public class ZdycxExecService extends ZdycxAbstractExecService {
         }).collect(Collectors.joining(","));
         zdycxTjfxDto.setSelectSql(selectSql.toString());
         zdycxTjfxDto.setTjfxSelectSql(tjfxSelectSql);
-        Page<Map> page = new Page<>(queryDto.getPageNumber(), queryDto.getPageSize());
-        Page<List<Map<String, Object>>> dataMap = zdycxExecMapper.selectTjfx(page, zdycxTjfxDto);
+        PaginationContext.trySetPagable(queryDto);
+        List<Map<String, Object>> dataMap = zdycxExecMapper.selectTjfx(zdycxTjfxDto);
         Map<String, Object> returnData = new HashMap<>(3);
         returnData.put("tableHead", tableHeads);
         returnData.put("tableData", PageResult.build(dataMap));

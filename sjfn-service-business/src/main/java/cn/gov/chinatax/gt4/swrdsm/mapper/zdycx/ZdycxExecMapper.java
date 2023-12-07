@@ -26,7 +26,7 @@ public interface ZdycxExecMapper {
      * @param mxcxDto
      * @return
      */
-    Page<List<Map<String, Object>>> selectMxcx(Page<Map> page, @Param("form") ZdycxMxcxDto mxcxDto);
+    List<Map<String, Object>> selectMxcx(@Param("form") ZdycxMxcxDto mxcxDto);
 
     /**
      * 统计分析
@@ -34,5 +34,5 @@ public interface ZdycxExecMapper {
      * @param zdycxTjfxDto
      * @return
      */
-    Page<List<Map<String, Object>>> selectTjfx(Page<Map> page, @Param("form") ZdycxTjfxDto zdycxTjfxDto);
+    List<Map<String, Object>> selectTjfx(@Param("form") ZdycxTjfxDto zdycxTjfxDto);
 }

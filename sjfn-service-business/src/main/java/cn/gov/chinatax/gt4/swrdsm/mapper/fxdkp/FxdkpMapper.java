@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 持久层
  *
@@ -21,6 +23,6 @@ public interface FxdkpMapper extends BaseMapperX<Fxdkp> {
      * @param form
      * @return
      */
-    Page<FxdkpDto> selectFxdkp(Page<FxdkpDto> page, @Param("form") FxdkpQueryDto form);
+    List<FxdkpDto> selectFxdkp(@Param("form") FxdkpQueryDto form);
 
 }

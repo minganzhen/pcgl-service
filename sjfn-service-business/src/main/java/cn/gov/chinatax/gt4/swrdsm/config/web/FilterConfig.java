@@ -1,6 +1,7 @@
 package cn.gov.chinatax.gt4.swrdsm.config.web;
 
 import cn.gov.chinatax.gt4.swrdsm.core.filter.EncryptFilter0;
+import cn.gov.chinatax.gt4.swrdsm.core.filter.PageFilter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,6 +42,15 @@ public class FilterConfig {
         return createFilterBean(new EncryptFilter0(properties, pathMatcher, apiPrefix), Integer.MIN_VALUE + 100); // 拦截放到最外面
     }
 
+    /**
+     * 创建 pageFilter Bean，拦截分页参数处理
+     */
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Bean
+    public FilterRegistrationBean<PageFilter> pageFilter(PathMatcher pathMatcher) {
+        log.info("[过滤器pageFilter]初始化启动成功");
+        return createFilterBean(new PageFilter(apiPrefix), -101);
+    }
 
     private static <T extends Filter> FilterRegistrationBean<T> createFilterBean(T filter, Integer order) {
         FilterRegistrationBean<T> bean = new FilterRegistrationBean<>(filter);

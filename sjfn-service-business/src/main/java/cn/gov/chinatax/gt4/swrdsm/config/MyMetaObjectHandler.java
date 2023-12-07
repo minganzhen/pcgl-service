@@ -5,6 +5,7 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 自动填充处理
@@ -20,8 +21,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         // 创建和修改时间自动填充当前时间
-        this.strictInsertFill(metaObject, "lrrq", LocalDateTime.class, LocalDateTime.now());
-        this.strictInsertFill(metaObject, "xgrq", LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, "lrrq", Date.class, new Date());
+        this.strictInsertFill(metaObject, "xgrq", Date.class, new Date());
     }
 
     /**
@@ -30,7 +31,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         // 修改时间自动填充当前时间
-        this.strictUpdateFill(metaObject, "xgrq", LocalDateTime.class, LocalDateTime.now());
+        this.strictUpdateFill(metaObject, "xgrq", Date.class, new Date());
     }
 
 }

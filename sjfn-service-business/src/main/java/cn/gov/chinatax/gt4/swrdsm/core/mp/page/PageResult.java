@@ -44,19 +44,19 @@ public class PageResult<T> implements Serializable {
         this.pageSize = pageSize;
     }
 
-    @Deprecated
     public PageResult(List<T> list) {
         // 支持page
-        if (list instanceof Page) {
-            Page<T> page = (Page<T>) list;
+        if (list instanceof com.github.pagehelper.Page ) {
+            com.github.pagehelper.Page <T> page = (com.github.pagehelper.Page <T>) list;
             this.total = page.getTotal();
-            this.pageNumber = page.getCurrent();
-            this.pageSize = page.getSize();
-            this.list = page.getRecords();
+            this.pageNumber = Long.valueOf(String.valueOf(page.getPageNum()));
+            this.pageSize = Long.valueOf(String.valueOf(page.getPageSize()));
+            this.list = page;
         } else {
             this.list = list;
         }
     }
+
     public PageResult(PageResultApi<T> page) {
         // 支持page
         this.total = page.getTotal();
@@ -67,6 +67,7 @@ public class PageResult<T> implements Serializable {
 
     /**
      * myabis_plus 原生分页使用
+     *
      * @param page
      */
     public PageResult(Page page) {
@@ -79,14 +80,29 @@ public class PageResult<T> implements Serializable {
 
     /**
      * 分页构造
+     *
      * @param page
      * @return
      */
-    public static PageResult build(Page page){
-       return new PageResult(page);
+    public static PageResult build(Page page) {
+        return new PageResult(page);
     }
 
-    public static PageResultApi buildApi(Page page){
-       return new PageResultApi(page.getRecords(),page.getTotal(),page.getCurrent(),page.getSize());
+    public static<T> PageResult build(List<T> list) {
+        return new PageResult(list);
+    }
+
+    public static PageResultApi buildApi(Page page) {
+        return new PageResultApi(page.getRecords(), page.getTotal(), page.getCurrent(), page.getSize());
+    }
+
+    public static <T> PageResultApi buildApi(List<T> list) {
+        // 支持page
+        PageResult pageResult = new PageResult(list);
+        return new PageResultApi(
+                pageResult.getList(),
+                pageResult.getTotal(),
+                pageResult.getPageNumber(),
+                pageResult.getPageSize());
     }
 }
