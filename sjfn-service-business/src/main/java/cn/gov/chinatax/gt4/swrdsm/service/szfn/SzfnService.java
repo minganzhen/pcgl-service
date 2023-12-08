@@ -44,6 +44,7 @@ public class SzfnService {
     private static final List<SzfnHkHbPzDtoV3> HB_HK_PZX_V3 = Lists.newArrayList(
             new SzfnHkHbPzDtoV3("注销税务登记","N","Y"),
             new SzfnHkHbPzDtoV3("退抵税费审批","N","Y"),
+            new SzfnHkHbPzDtoV3("定期定额户核定定额","N","Y"),
             new SzfnHkHbPzDtoV3("税（费）种认定","Y","N"),
             new SzfnHkHbPzDtoV3("变更税务登记","Y","N"),
             new SzfnHkHbPzDtoV3("修改设立税务登记信息（补偿）","Y","N"),

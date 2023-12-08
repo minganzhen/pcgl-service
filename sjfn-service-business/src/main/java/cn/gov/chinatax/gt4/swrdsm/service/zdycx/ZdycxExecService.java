@@ -160,7 +160,7 @@ public class ZdycxExecService extends ZdycxAbstractExecService {
         // 7、 构建统计分析 selectTjfxSql 字段
         String tjfxSelectSql = tableHeads.stream().map(item -> {
             if (ObjectUtil.isEmpty(item.getTjfxDb())) return item.getLmDm();
-            return String.format(CONCAT_THB, item.getLmDm(), item.getLmDm() + item.getTjfxDb(), item.getLmDm(), "%", item.getLmKey());
+            return String.format(CONCAT_THB, item.getLmDm() + item.getTjfxDb(), String.format("( %s )", item.getLmDm() + " - " + item.getLmDm() + item.getTjfxDb()), item.getLmDm(), "%", item.getLmKey());
         }).collect(Collectors.joining(","));
         zdycxTjfxDto.setSelectSql(selectSql.toString());
         zdycxTjfxDto.setTjfxSelectSql(tjfxSelectSql);
