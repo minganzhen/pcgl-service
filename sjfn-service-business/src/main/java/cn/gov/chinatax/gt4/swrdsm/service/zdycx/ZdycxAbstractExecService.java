@@ -22,6 +22,7 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -41,6 +42,7 @@ import static cn.gov.chinatax.gt4.swrdsm.core.util.SqlExecJoinUtil.*;
  * @Description：ZdycxAbstractExecService 抽象类
  */
 @HjqDS
+@Slf4j
 public abstract class ZdycxAbstractExecService implements ZdycxInterFaceExecService {
     protected static Map<String, List<BdQzEnum>> bdQzMap = new HashMap<>();
     protected static final List bqQzList = Lists.newArrayList("rqfw", "szfw");
@@ -56,22 +58,26 @@ public abstract class ZdycxAbstractExecService implements ZdycxInterFaceExecServ
     @PostConstruct
     @HjqDS
     public void initBdQzEnum() {
-        List<ZdycxLmgxb> zdycxLmgxbs = zdycxLmgxbMapper.selectList(
-                new LambdaQueryWrapperX<ZdycxLmgxb>().in(ZdycxLmgxb::getTjlbz, Lists.newArrayList("0", "1", "2"))
-                        .in(ZdycxLmgxb::getTjlx, Lists.newArrayList("rqfw", "szfw")).orderByAsc(ZdycxLmgxb::getBdDm)
-        );
-        Map<String, List<ZdycxLmgxb>> listMap = zdycxLmgxbs.stream().collect(Collectors.groupingBy(ZdycxLmgxb::getBdDm));
-        for (Map.Entry<String, List<ZdycxLmgxb>> entry : listMap.entrySet()) {
-            String key = entry.getKey();
-            List<ZdycxLmgxb> value = entry.getValue();
-            if (value.isEmpty()) continue;
-            Long round = Math.round(value.size() * 2 / 0.75);
-            List<BdQzEnum> list = new ArrayList<>(round.intValue());
-            value.stream().forEach(item -> {
-                list.add(new BdQzEnum(getQStr(item.getLmDm()), item.getLmDm(), SqlExecJoinUtil.GT, item.getBdDm()));
-                list.add(new BdQzEnum(getZStr(item.getLmDm()), item.getLmDm(), SqlExecJoinUtil.LT, item.getBdDm()));
-            });
-            bdQzMap.put(key, list);
+        try {
+            List<ZdycxLmgxb> zdycxLmgxbs = zdycxLmgxbMapper.selectList(
+                    new LambdaQueryWrapperX<ZdycxLmgxb>().in(ZdycxLmgxb::getTjlbz, Lists.newArrayList("0", "1", "2"))
+                            .in(ZdycxLmgxb::getTjlx, Lists.newArrayList("rqfw", "szfw")).orderByAsc(ZdycxLmgxb::getBdDm)
+            );
+            Map<String, List<ZdycxLmgxb>> listMap = zdycxLmgxbs.stream().collect(Collectors.groupingBy(ZdycxLmgxb::getBdDm));
+            for (Map.Entry<String, List<ZdycxLmgxb>> entry : listMap.entrySet()) {
+                String key = entry.getKey();
+                List<ZdycxLmgxb> value = entry.getValue();
+                if (value.isEmpty()) continue;
+                Long round = Math.round(value.size() * 2 / 0.75);
+                List<BdQzEnum> list = new ArrayList<>(round.intValue());
+                value.stream().forEach(item -> {
+                    list.add(new BdQzEnum(getQStr(item.getLmDm()), item.getLmDm(), SqlExecJoinUtil.GT, item.getBdDm()));
+                    list.add(new BdQzEnum(getZStr(item.getLmDm()), item.getLmDm(), SqlExecJoinUtil.LT, item.getBdDm()));
+                });
+                bdQzMap.put(key, list);
+            }
+        } catch (Throwable throwable) {
+            log.info("【自定义查询初始化异常】{}", throwable.getMessage());
         }
     }
 
