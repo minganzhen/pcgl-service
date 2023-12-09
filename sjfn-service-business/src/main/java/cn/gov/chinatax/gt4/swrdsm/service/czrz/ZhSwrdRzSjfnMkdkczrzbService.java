@@ -55,6 +55,8 @@ public class ZhSwrdRzSjfnMkdkczrzbService extends BaseServiceX<ZhSwrdRzSjfnMkdkc
     public String addZhSwrdRzSjfnMkdkczrzb(ZhSwrdRzSjfnMkdkczrzbEditDto edit) {
         String result = null;
         edit.setCzsj(DateUtil.date());
+        edit.setSjcsdq("TEST");
+        edit.setSjgsdq("TEST");
         ZhSwrdRzSjfnMkdkczrzb zhSwrdRzSjfnMkdkczrzb = BeanUtil.copyProperties(edit, ZhSwrdRzSjfnMkdkczrzb.class);
         int row = insert(zhSwrdRzSjfnMkdkczrzb);
         if (row > 0) {

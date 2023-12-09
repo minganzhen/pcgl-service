@@ -43,8 +43,8 @@ public class SzfnController {
 
     @ApiOperation(value = "数据赋能-慧办")
     @GetMapping("/v1/select-zjjg")
-    public ServerResponse<List<SzfnZjjgDto>> selectZjjg(@RequestParam(value = "llrsfid", required = false) String llrsfid) {
-        return ServerResponse.success(szfnService.selectZjjg(llrsfid));
+    public ServerResponse<List<SzfnZjjgDto>> selectZjjg(@RequestParam(value = "lrrsfid", required = false) String lrrsfid) {
+        return ServerResponse.success(szfnService.selectZjjg(lrrsfid));
     }
 
     @ApiOperation(value = "数据赋能-慧看")

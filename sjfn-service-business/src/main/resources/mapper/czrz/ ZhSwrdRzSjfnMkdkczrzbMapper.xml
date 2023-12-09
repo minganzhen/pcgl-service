@@ -94,9 +94,10 @@
         from
         CS_ZH_SJFN_MKDKCZRZB t
         <where>
-            t.LRRSFID = #{lrrsfid}
+            and t.LRRSFID = #{lrrsfid}
+            and t.GNBS like '%慧办%'
+        </where>
         order by t.CZSJ desc
         limit 1
-        </where>
     </select>
 </mapper>

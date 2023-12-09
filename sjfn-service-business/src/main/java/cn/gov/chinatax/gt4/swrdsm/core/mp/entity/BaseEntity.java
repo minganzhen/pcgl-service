@@ -72,7 +72,7 @@ public class BaseEntity implements Serializable {
     /**
      * 数据同步时间
      */
-    @TableField(value = "SJTB_SJ")
+    @TableField(value = "SJTB_SJ",fill = FieldFill.INSERT)
     private Date sjtbSj;
 
     /**
@@ -90,7 +90,7 @@ public class BaseEntity implements Serializable {
     /**
      * 业务渠道代码
      */
-    @TableField(value = "YWQD_DM")
+    @TableField(value = "YWQD_DM",fill = FieldFill.INSERT, jdbcType = JdbcType.VARCHAR)
     private String ywqdDm;
 
 }

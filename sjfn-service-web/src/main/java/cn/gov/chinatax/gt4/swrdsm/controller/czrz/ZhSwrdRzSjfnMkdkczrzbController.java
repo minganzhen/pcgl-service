@@ -4,6 +4,7 @@ import cn.gov.chinatax.gt4.swrdsm.pojo.dto.czrz.ZhSwrdRzSjfnMkdkczrzbDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.czrz.ZhSwrdRzSjfnMkdkczrzbEditDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.czrz.ZhSwrdRzSjfnMkdkczrzbQueryDto;
 import cn.gov.chinatax.gt4.swrdsm.service.czrz.ZhSwrdRzSjfnMkdkczrzbService;
+import com.tencent.gov.goff.common.v2.pojo.bean.ServerResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ public class ZhSwrdRzSjfnMkdkczrzbController {
      */
     @ApiOperation(value = "获取列表", response = ZhSwrdRzSjfnMkdkczrzbDto.class, responseContainer = "List")
     @GetMapping("/v1/select-page")
-    public List<ZhSwrdRzSjfnMkdkczrzbDto> getZhSwrdRzSjfnMkdkczrzbs(ZhSwrdRzSjfnMkdkczrzbQueryDto form) {
-        return zhSwrdRzSjfnMkdkczrzbService.getZhSwrdRzSjfnMkdkczrzbs(form);
+    public ServerResponse<List<ZhSwrdRzSjfnMkdkczrzbDto>> getZhSwrdRzSjfnMkdkczrzbs(ZhSwrdRzSjfnMkdkczrzbQueryDto form) {
+        return ServerResponse.success(zhSwrdRzSjfnMkdkczrzbService.getZhSwrdRzSjfnMkdkczrzbs(form));
     }
 
     /**
@@ -45,7 +46,7 @@ public class ZhSwrdRzSjfnMkdkczrzbController {
      */
     @ApiOperation(value = "新增", response = String.class)
     @PostMapping("/v1/add")
-    public String addZhSwrdRzSjfnMkdkczrzb(@RequestBody ZhSwrdRzSjfnMkdkczrzbEditDto edit) {
-        return zhSwrdRzSjfnMkdkczrzbService.addZhSwrdRzSjfnMkdkczrzb(edit);
+    public ServerResponse<String> addZhSwrdRzSjfnMkdkczrzb(@RequestBody ZhSwrdRzSjfnMkdkczrzbEditDto edit) {
+        return ServerResponse.success(zhSwrdRzSjfnMkdkczrzbService.addZhSwrdRzSjfnMkdkczrzb(edit));
     }
 }

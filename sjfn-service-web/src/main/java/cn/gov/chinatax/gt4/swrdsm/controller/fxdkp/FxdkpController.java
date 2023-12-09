@@ -1,6 +1,5 @@
 package cn.gov.chinatax.gt4.swrdsm.controller.fxdkp;
 
-import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
 import cn.gov.chinatax.gt4.swrdsm.pojo.common.PageResultApi;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.fxdkp.FxdkpDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.vo.fxdkp.FxdkpQueryDto;
@@ -8,7 +7,10 @@ import cn.gov.chinatax.gt4.swrdsm.service.fxdkp.FxdkpService;
 import com.tencent.gov.goff.common.v2.pojo.bean.ServerResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
