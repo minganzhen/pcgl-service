@@ -1,5 +1,6 @@
 package cn.gov.chinatax.gt4.swrdsm.mapper.zdycx;
 
+import cn.gov.chinatax.gt4.swrdsm.annotation.HjqDS;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.mapper.BaseMapperX;
 import cn.gov.chinatax.gt4.swrdsm.pojo.domain.zdycx.ZdycxLmgxb;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxLmgxbDto;
@@ -18,6 +19,7 @@ import java.util.List;
  * @date 2023-11-22
  */
 @Mapper
+@HjqDS
 public interface ZdycxLmgxbMapper extends BaseMapperX<ZdycxLmgxb> {
 
     /**

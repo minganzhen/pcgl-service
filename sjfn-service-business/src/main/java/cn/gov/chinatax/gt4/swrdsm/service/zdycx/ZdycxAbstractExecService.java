@@ -56,7 +56,6 @@ public abstract class ZdycxAbstractExecService implements ZdycxInterFaceExecServ
 
     // 初始化缓存
     @PostConstruct
-    @HjqDS
     public void initBdQzEnum() {
         try {
             List<ZdycxLmgxb> zdycxLmgxbs = zdycxLmgxbMapper.selectList(
