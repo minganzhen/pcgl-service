@@ -1,11 +1,10 @@
 package cn.gov.chinatax.gt4.swrdsm.controller.zdycx;
 
-import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
-import cn.gov.chinatax.gt4.swrdsm.pojo.common.PageResultApi;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjEditDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjQueryDto;
 import cn.gov.chinatax.gt4.swrdsm.service.zdycx.ZdycxScjService;
+import cn.gov.chinatax.gt4.swrdsm.util.core.PageResult;
 import com.tencent.gov.goff.common.v2.pojo.bean.ServerResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,7 +36,7 @@ public class ZdycxScjController {
      */
     @ApiOperation(value = "获取收藏夹列表", response = ZdycxScjDto.class, responseContainer = "List")
     @PostMapping("/v1/select-page")
-    public ServerResponse<PageResultApi<ZdycxScjDto>> getZdycxScjs(@RequestBody ZdycxScjQueryDto form) {
+    public ServerResponse<PageResult<ZdycxScjDto>> getZdycxScjs(@RequestBody ZdycxScjQueryDto form) {
         return ServerResponse.success(zdycxScjService.getZdycxScjs(form));
     }
 

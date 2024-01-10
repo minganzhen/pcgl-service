@@ -1,7 +1,5 @@
-package cn.gov.chinatax.gt4.swrdsm.core.mp.page;
+package cn.gov.chinatax.gt4.swrdsm.util.core;
 
-import cn.gov.chinatax.gt4.swrdsm.pojo.common.PageResultApi;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -56,53 +54,9 @@ public class PageResult<T> implements Serializable {
             this.list = list;
         }
     }
-
-    public PageResult(PageResultApi<T> page) {
-        // 支持page
-        this.total = page.getTotal();
-        this.pageNumber = page.getPageNumber();
-        this.pageSize = page.getPageSize();
-        this.list = page.getList();
-    }
-
-    /**
-     * myabis_plus 原生分页使用
-     *
-     * @param page
-     */
-    public PageResult(Page page) {
-        // 支持page
-        this.total = page.getTotal();
-        this.pageNumber = page.getCurrent();
-        this.pageSize = page.getSize();
-        this.list = page.getRecords();
-    }
-
-    /**
-     * 分页构造
-     *
-     * @param page
-     * @return
-     */
-    public static PageResult build(Page page) {
-        return new PageResult(page);
-    }
-
     public static<T> PageResult build(List<T> list) {
         return new PageResult(list);
     }
 
-    public static PageResultApi buildApi(Page page) {
-        return new PageResultApi(page.getRecords(), page.getTotal(), page.getCurrent(), page.getSize());
-    }
 
-    public static <T> PageResultApi buildApi(List<T> list) {
-        // 支持page
-        PageResult pageResult = new PageResult(list);
-        return new PageResultApi(
-                pageResult.getList(),
-                pageResult.getTotal(),
-                pageResult.getPageNumber(),
-                pageResult.getPageSize());
-    }
 }

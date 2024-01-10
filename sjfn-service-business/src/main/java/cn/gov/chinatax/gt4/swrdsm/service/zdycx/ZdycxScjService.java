@@ -2,17 +2,15 @@ package cn.gov.chinatax.gt4.swrdsm.service.zdycx;
 
 import cn.gov.chinatax.gt4.swrdsm.annotation.HjqDS;
 import cn.gov.chinatax.gt4.swrdsm.core.assertions.AssertUtil;
-import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PageResult;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.page.PaginationContext;
 import cn.gov.chinatax.gt4.swrdsm.core.mp.service.BaseServiceX;
 import cn.gov.chinatax.gt4.swrdsm.mapper.zdycx.ZdycxScjMapper;
-import cn.gov.chinatax.gt4.swrdsm.pojo.common.PageResultApi;
 import cn.gov.chinatax.gt4.swrdsm.pojo.domain.zdycx.ZdycxScj;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjEditDto;
 import cn.gov.chinatax.gt4.swrdsm.pojo.dto.zdycx.ZdycxScjQueryDto;
+import cn.gov.chinatax.gt4.swrdsm.util.core.PageResult;
 import cn.hutool.core.bean.BeanUtil;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,11 +34,11 @@ public class ZdycxScjService extends BaseServiceX<ZdycxScjMapper, ZdycxScj> {
      * @param form
      * @return
      */
-    public PageResultApi<ZdycxScjDto> getZdycxScjs(ZdycxScjQueryDto queryDto) {
+    public PageResult<ZdycxScjDto> getZdycxScjs(ZdycxScjQueryDto queryDto) {
         // todo 获取当前登录人的税务人员代码
         PaginationContext.trySetPagable(queryDto);
         List<ZdycxScjDto> resultPage = mapper.getZdycxScjs(queryDto);
-        return PageResult.buildApi(resultPage);
+        return PageResult.build(resultPage);
     }
 
     /**
