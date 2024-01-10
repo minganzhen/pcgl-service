@@ -108,7 +108,8 @@ public class ZdycxExecService extends ZdycxAbstractExecService {
             StringBuilder tableSql = builderTableSql(queryDto, false); // 1、构建 tableSql
             Set<ZdycxZslDto> tableHeadSet = getZdycxZslDtos(queryDto); // 2、sql字段排序处理
 //            StringBuilder orderBySql = builderOrderBySql(tableHeadSet); // 2、构建 orderBy
-//            zdycxTjfxDto.setTableSql(tableSql.toString()).setOrderBySql(orderBySql.toString());
+            zdycxTjfxDto.setTableSql(tableSql.toString());
+//            zdycxTjfxDto.setOrderBySql(orderBySql.toString());
         }, tjfxExecutor).exceptionally(throwable -> {
             throw new GoffException(Constant.CodeStr.FAILURE, throwable.getMessage());
         });
@@ -159,7 +160,7 @@ public class ZdycxExecService extends ZdycxAbstractExecService {
         // 7、 构建统计分析 selectTjfxSql 字段
         String tjfxSelectSql = tableHeads.stream().map(item -> {
             if (ObjectUtil.isEmpty(item.getTjfxDb())) return item.getLmDm();
-            return String.format(CONCAT_THB, item.getLmDm(), item.getLmDm() + item.getTjfxDb(), item.getLmDm(), "%", item.getLmKey());
+            return String.format(CONCAT_THB, item.getLmDm() + item.getTjfxDb(), String.format("( %s )", item.getLmDm() + " - " + item.getLmDm() + item.getTjfxDb()), item.getLmDm(), "%", item.getLmKey());
         }).collect(Collectors.joining(","));
         zdycxTjfxDto.setSelectSql(selectSql.toString());
         zdycxTjfxDto.setTjfxSelectSql(tjfxSelectSql);

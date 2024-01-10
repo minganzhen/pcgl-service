@@ -23,6 +23,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         // 创建和修改时间自动填充当前时间
         this.strictInsertFill(metaObject, "lrrq", Date.class, new Date());
         this.strictInsertFill(metaObject, "xgrq", Date.class, new Date());
+        this.strictInsertFill(metaObject, "ywqdDm", String.class, "swzj.zjnb.swrd");
+        this.strictInsertFill(metaObject, "sjtbSj", Date.class, new Date());
     }
 
     /**
